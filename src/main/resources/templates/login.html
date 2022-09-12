@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/login_css.css">
+    <script src="../static/lib/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript">
+        function login() {
+            let user = {
+                "username": $("#username").val(),
+                "password": $("#password").val()
+            }
+            $.ajax({
+                url: "/login",
+                type: "post",
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                data: JSON.stringify(user),
+                success: function (data) {
+                    //http://localhost:8088/user
+                    console.log(data)
+                    console.log(data.data)
+                    if (data.data == "登录成功") {
+                    } else {
+
+                    }
+                },
+                error: function (data) {
+                },
+            });
+        }
+    </script>
+</head>
+
+<body>
+<div class="containter">
+    <div class="white">
+        <div class="icon"></div>
+        <div class="text">红河州理论人才专家库系统</div>
+    </div>
+    <div class="red">
+        <div class="login-panel">
+            <form action="#" method="post" id="login">
+                <div class="form-group">
+                    <input type="text" name="username" id="username" placeholder="请输入帐号" class="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="password" placeholder="请输入密码" class="password">
+                </div>
+                <div class="form-group">
+                    <input type="button" value="登陆" class="login" onclick="login()">
+                </div>
+            </form>
+            <span class="msg">
+          <a href="">修改密码</a>
+        </span>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

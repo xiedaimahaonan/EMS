@@ -1,0 +1,30 @@
+#服务器端口
+server:
+  port: 8088
+#数据源连接信息 oracle参数
+spring:
+  jpa:
+    database: oracle
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@10.10.10.41:1521:orcl
+    username: UOH_HHSKZJ
+    password: uoh3694898
+#spring-boot整合freemarker 参数
+  freemarker:
+    cache: false
+    charset: UTF-8
+    allow-request-override: false
+    content-type: text/html
+    expose-session-attributes: true
+    check-template-location: true
+    suffix: .html
+    template-loader-path: classpath:/templates/
+#MVC资源放行
+#  mvc:
+#    static-path-pattern: /static/**
+#Mybatis-plus 日志 记录输出的Sql语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
