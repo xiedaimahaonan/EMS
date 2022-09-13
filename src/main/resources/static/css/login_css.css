@@ -14,7 +14,7 @@ html, body ,.containter{
 .containter .white .icon{
     width: 100%;
     height: 70%;
-    background-image: url(../img/标志.png);
+    background-image: url(../img/user/3.png);
     background-repeat: no-repeat;
     background-size:230px;
     background-position: center;
@@ -29,7 +29,7 @@ html, body ,.containter{
     font-family: '微软雅黑';
 }
 .red{
-    background: url(../img/底片.png);
+    background: url(../img/user/2.png);
     background-repeat: no-repeat;
     background-size:cover;
     width: 100%;
@@ -72,7 +72,7 @@ input:focus{
 }
 .containter .red .login-panel .form-group .username{
     margin-top: 30px;
-    background: url(../img/用户名.png);
+    background: url(../img/user/4.png);
     background-repeat: no-repeat;
     background-position-y:5px;
     background-size: 40px;
@@ -80,7 +80,7 @@ input:focus{
 }
 .containter .red .login-panel .form-group .password{
     margin-top: 30px;
-    background: url(../img/密码.png);
+    background: url(../img/user/1.png);
     background-repeat: no-repeat;
     background-size: 40px;
     background-position-y:1px;
