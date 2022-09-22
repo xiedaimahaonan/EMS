@@ -1,0 +1,139 @@
+.index::after {
+    content: "|";
+    margin-left: 4px;
+    margin-right: 4px;
+    color: black;
+}
+
+.background {
+    background-image: url(../img/user/2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon {
+    background-image: url(../img/user/3.png);
+    background-repeat: no-repeat;
+    background-size: 180px;
+    height: 100%;
+    background-position: center, center;
+    /* position: absolute;
+    top:25%; */
+    /* margin-top:10%; */
+}
+
+.text {
+    font-size: 45px;
+    color: #fff;
+    font-family: '黑体';
+    text-align: center;
+    height: 450px;
+    line-height: 480px;
+}
+
+.breadcrumb>li+li:before {
+    color: #333;
+    display: inline;
+    font-size: 16px;
+    font-family: '黑体';
+    height: auto;
+    content: ">";
+    font-weight: 300;
+    text-shadow: none;
+    padding: 0 5px;
+}
+
+.search {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    border-radius: 5px;
+    background-image: url(../img/index/1.png);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position-x: 270px;
+    background-position-y: 1px;
+}
+
+input:focus {
+    outline: 0px;
+}
+
+.advanced-search {
+    position: absolute;
+    top: 10px;
+    left: 325px;
+    color: #ea8585;
+}
+
+.advanced-search::before {
+    content: "|";
+    color: black;
+    margin-right: 10px;
+}
+
+.search-panel {
+    width: 400px;
+    height: 250px;
+    border: 1px black solid;
+    border-radius: 4px;
+
+    position: absolute;
+    left: 775px;
+    top: 530px;
+    display: block;
+}
+.search-panel .search-text {
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #a7a3a3;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+tr{
+    width: 350px;
+    height: 40px;
+    margin-top: 20px;
+}
+td p{
+    width: 70px;
+}
+td input{
+    width: 250px;
+}
+td input:nth-child(1){
+    margin-top: 10px;
+}
+.search-panel .search-btn{
+    background-color: #db422a;
+    color: #fff;
+    width: 90px;
+    height: 30px;
+    margin-top: 10px;
+    border-color:#db422a ;
+    margin-left: 95px;
+}
+.search-panel .clear_btn{
+    background-color: #ffead2;
+    color: #db422a;
+    width: 90px;
+    height: 30px;
+    border-color: #ffead2;
+    margin-left: 40px;
+}
+.nav_item {
+    height: 15px;
+    line-height: 15px;
+    margin-top: 8px;
+}
+
+
+
+
+
+
