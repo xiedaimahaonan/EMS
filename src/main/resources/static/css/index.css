@@ -52,9 +52,10 @@
     border-radius: 5px;
     background-image: url(../img/index/1.png);
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 25px;
     background-position-x: 270px;
     background-position-y: 1px;
+    border: 1px black solid;
 }
 
 input:focus {
@@ -63,7 +64,7 @@ input:focus {
 
 .advanced-search {
     position: absolute;
-    top: 10px;
+    top: 16px;
     left: 325px;
     color: #ea8585;
 }
@@ -72,6 +73,7 @@ input:focus {
     content: "|";
     color: black;
     margin-right: 10px;
+
 }
 
 .search-panel {
@@ -79,10 +81,9 @@ input:focus {
     height: 250px;
     border: 1px black solid;
     border-radius: 4px;
-
     position: absolute;
     left: 775px;
-    top: 530px;
+    top: 535px;
     display: block;
 }
 .search-panel .search-text {
@@ -127,9 +128,15 @@ td input:nth-child(1){
     margin-left: 40px;
 }
 .nav_item {
-    height: 15px;
+    width: 100px;
+    height: 20px;
     line-height: 15px;
     margin-top: 8px;
+
+}
+li > a:hover {
+    text-decoration: none;
+    background-color: #fff !important;
 }
 
 
