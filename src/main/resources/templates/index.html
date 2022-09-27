@@ -52,7 +52,10 @@
             $(" input[ name='expert_profession' ] ").val("");
             $(" input[ name='expert_title' ] ").val("");
         })
+        $('#clear_subject').click(function () {
 
+           $("li  input[name='subject']").prop("checked",false);
+        })
     });
 </script>
 
@@ -136,21 +139,21 @@
                         <div class="nav-link"  href="#xuekefenlei" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 75px;background-color: #db422a;">
                             <span class="menu-title col-lg-offset-5" style="height: 75px;color: #fff;font-size: 30px;font-family:'黑体';line-height: 75px;">学科分类</span>
-                            <span class="col-md-offset-2" ><input type="button" value="清空"></span>
+                            <span class="col-md-offset-2" ><input type="button" value="清空" id="clear_subject"></span>
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable " style="height: 225px;background-color: #f6f6f6;">
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 经济学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 法学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 教育学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 文学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
+                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="subject" id=""> 哲学</li>
+                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="subject" id=""> 哲学</li>
+                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="subject" id=""> 哲学</li>
+                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="subject" id=""> 哲学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="subject" id=""> 经济学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="subject" id=""> 法学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="subject" id=""> 教育学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="subject" id=""> 文学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="subject" id=""> 历史学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="subject" id=""> 历史学</li>
+                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="subject" id=""> 历史学</li>
                             </ul>
                         </div>
                     </li>
@@ -230,7 +233,7 @@
                                 <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
                                 <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
                                 <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a  href="" style="width: 100%;color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
                             </ul>
                         </div>
                     </li>

@@ -134,10 +134,14 @@ td input:nth-child(1){
     margin-top: 8px;
 
 }
+
 li > a:hover {
     text-decoration: none;
-    background-color: #fff !important;
+    background-color: transparent !important;
 }
+/*#show-more:hover{*/
+/*    background-color: #e3e3e3!important;*/
+/*}*/
 
 
 
