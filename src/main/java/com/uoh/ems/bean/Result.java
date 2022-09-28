@@ -1,4 +1,4 @@
-package com.uoh.ems.common;
+package com.uoh.ems.bean;
 
 import lombok.Data;
 
