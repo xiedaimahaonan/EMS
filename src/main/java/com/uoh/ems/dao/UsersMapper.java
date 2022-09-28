@@ -1,4 +1,4 @@
-package com.uoh.ems.mapper;
+package com.uoh.ems.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uoh.ems.bean.Users;

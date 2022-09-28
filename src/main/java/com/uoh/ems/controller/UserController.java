@@ -2,7 +2,7 @@ package com.uoh.ems.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.uoh.ems.bean.Users;
 import com.uoh.ems.common.Result;
-import com.uoh.ems.mapper.UsersMapper;
+import com.uoh.ems.dao.UsersMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,6 @@ public class UserController {
         return mv ;
 
     }
-
     /**
      * @parameter: JSON
      * @author: XDS

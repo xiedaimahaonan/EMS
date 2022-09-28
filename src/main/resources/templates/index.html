@@ -77,11 +77,11 @@
             <ul class="breadcrumb col-md-6" style="background-color: #f8f8f8;height: 50px;line-height: 35px;">
                 <li>
                     <i class="fa fa-home"></i>
-                    <a href="/Index">主页</a>
+                    <a href="/Index">${indexShow}</a>
                 </li>
 
                 <li>
-                    <a href="#">xxx</a>
+                    <a href="#">${indexMsg}</a>
                 </li>
 
 
@@ -106,18 +106,36 @@
                     <tr>
                         <td>
                             <p>机&emsp;&emsp;构</p>
+                            <#--<select class="" name=" ">
+                                <option value='' disabled selected style='display:none;'>请选择机构</option>
+                                <#list ExpertWorkPlace as workplace>
+                                    <option>${workplace!}</option>
+                                </#list>
+                            </select>-->
                         </td>
                         <td> <input name="expert_work_place" id="expert_work_place" /></td>
                     </tr>
                     <tr>
                         <td>
-                            <p>专业领域</p>
+                            <p>领&emsp;&emsp;域</p>
+                          <#--  <select class="" name=" ">
+                                <option value='' disabled selected style='display:none;'>请选择专业领域</option>
+                                <#list SpecialAreaMsg as special>
+                                    <option>${special!}</option>
+                                </#list>
+                            </select>-->
                         </td>
                         <td> <input name="expert_profession" id="expert_profession" /></td>
                     </tr>
                     <tr>
                         <td>
                             <p>职&emsp;&emsp;称</p>
+                           <#-- <select class="" name=" ">
+                                <option value='' disabled selected style='display:none;'>请选择职称</option>
+                                <#list ExpertTitleMsg as title>
+                                    <option>${title!}</option>
+                                </#list>
+                            </select>-->
                         </td>
                         <td> <input name="expert_title" id="expert_title" /></td>
                     </tr>
@@ -140,17 +158,9 @@
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable " style="height: 225px;background-color: #f6f6f6;">
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox" name="" id=""> 哲学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 经济学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 法学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 教育学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"> <input type="checkbox" name="" id=""> 文学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
-                                <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox" name="" id=""> 历史学</li>
+                                <#list SubjectMsg as subject>
+                                    <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox"  name="S_CODE" >${(S_NAME)!""}666</li>
+                                </#list>
                             </ul>
                         </div>
                     </li>
@@ -161,15 +171,13 @@
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <div class="nav-link"  href="#guwentuan" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">顾问团</span>
+                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">顾问团人员</span>
                         </div>
                         <div class="collapse show" id="guwentuan" >
                             <ul class="nav flex-column sub-menu" >
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
+                                <#list VisitPersonsMsg as visit>
+                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${visit}</a></li>
+                                </#list>
                                 <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
                             </ul>
                         </div>
@@ -185,12 +193,10 @@
                         </div>
                         <div class="collapse show" id="zhicheng" >
                             <ul class="nav flex-column sub-menu" >
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">教授</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">副教授</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">讲师</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">助教</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">研究员</a></li>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <#list ExpertTitleMsg as title>
+                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${title}</a></li>
+                                </#list>
+                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="#" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
                             </ul>
                         </div>
                     </li>
@@ -205,11 +211,9 @@
                         </div>
                         <div class="collapse show" id="zhuanyelingyu" >
                             <ul class="nav flex-column sub-menu" >
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
+                                <#list SpecialAreaMsg as special>
+                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${special}</a></li>
+                                </#list>
                                 <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
                             </ul>
                         </div>
@@ -225,11 +229,9 @@
                         </div>
                         <div class="collapse show" id="jigou" >
                             <ul class="nav flex-column sub-menu" >
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxxx</a></li>
-                                <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">xxxx</a></li>
+                                <#list ExpertWorkPlace as workplace>
+                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${workplace}</a></li>
+                                </#list>
                                 <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
                             </ul>
                         </div>

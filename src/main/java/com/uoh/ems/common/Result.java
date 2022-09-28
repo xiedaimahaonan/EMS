@@ -22,7 +22,6 @@ public class Result<T> implements Serializable {
         r.code = 1;//成功
         return r;
     }
-    //泛型方法的格式：修饰符 <泛型变量> 方法返回值 方法名称(形参列表){}
     public static <T> Result<T> error(String msg) {
         Result r = new Result();
         r.msg = msg;
