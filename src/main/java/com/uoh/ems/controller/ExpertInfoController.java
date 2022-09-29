@@ -24,16 +24,16 @@ public class ExpertInfoController {
      * @date:2020-9-17
      */
     @RequestMapping("/Index")
-    public ModelAndView getMessage(@RequestParam(value = "PageNo", required = false) Integer PageNo, @RequestParam(value = "PageSize", required = false) Integer PageSize){
+    public ModelAndView getMessage(){
         ModelAndView mv  = new ModelAndView("index");
         mv.addObject("indexShow", "首页");
         mv.addObject("indexMsg", "专家导航");
         mv.addObject("SpecialAreaMsg",expertInfoMapper.getSpecialArea());
-        //mv.addObject("SubjectMsg",subjectMapper.getSubjectMsg());
-        mv.addObject("SubjectMsg",expertInfoMapper.getSubjectMsg());
+        mv.addObject("SubjectMsg",subjectMapper.getSubjectMsg());
         mv.addObject("ExpertTitleMsg",expertInfoMapper.getExpertTitle());
         mv.addObject("VisitPersonsMsg",expertInfoMapper.getVisitPersons());
         mv.addObject("ExpertWorkPlace",expertInfoMapper.getExpertWorkPlace());
+        mv.addObject("ExpertSelfMsg",expertInfoMapper.getExpertSelfMsg());
         return mv;
     }
 }

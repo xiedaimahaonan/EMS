@@ -10,6 +10,12 @@ import java.util.List;
 
 @Mapper
 public interface SubjectMapper extends BaseMapper<Subject> {
+    /**
+     * @parameter: null
+     * @author: XDS
+     * @description: SubjectMsg 获取科目信息
+     * @return: List<String>
+     * @date:
+     */
     List<Subject> getSubjectMsg();
-    // getSubjectMsg();
 }

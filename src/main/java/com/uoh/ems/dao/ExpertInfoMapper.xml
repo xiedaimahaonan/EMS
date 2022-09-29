@@ -36,4 +36,7 @@
     <select id="getSubjectMsg" resultType="java.lang.String">
         SELECT DISTINCT (S_NAME) FROM SUBJECT WHERE S_ID > 1
     </select>
+    <select id="getExpertSelfMsg" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT *FROM EXPERTINFO
+    </select>
 </mapper>

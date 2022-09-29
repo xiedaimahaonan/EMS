@@ -11,13 +11,53 @@ import java.util.List;
 @Mapper
 public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
     void selectMsg(@Param("page")Page<ExpertInfo> page, @Param("expertInfo") ExpertInfo expertInfo);
+
+    /**
+     * @parameter: null
+     * @author: XDS
+     * @description:ExpertTitleMsg 获取专家职称信息
+     * @return:  List<String>
+     * @date:2022-9-27
+     */
     List<String> getExpertTitle();
 
+    /**
+     * @parameter:null
+     * @author: XDS
+     * @description: VisitPersonsMsg 获取顾问团信息
+     * @return: List<String>
+     * @date:2022-9-28
+     */
     List<String> getVisitPersons();
 
+    /**
+     * @parameter:null
+     * @author: XDS
+     * @description: SpecialArea 获取专家领域信息
+     * @return: List<String>
+     * @date:2022-9-27
+     */
     List<String> getSpecialArea();
 
+    /**
+     * @parameter:null
+     * @author: XDS
+     * @description: ExpertWorkPlace 获取专家机构信息
+     * @return: List<String>
+     * @date:2022-9-27
+     */
     List<String> getExpertWorkPlace();
 
-    List<String> getSubjectMsg();
+
+
+    /**
+     * @parameter: null
+     * @author: XDS
+     * @description: ExpertSelfMsg 获取专家个人信息
+     * @return:  List<ExpertInfo>
+     * @date:2022-9-27
+     */
+    List<ExpertInfo> getExpertSelfMsg();
+
+
 }

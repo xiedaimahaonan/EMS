@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uoh.ems.dao.SubjectMapper">
     <select id="getSubjectMsg" resultType="com.uoh.ems.bean.Subject">
-        SELECT DISTINCT (S_NAME) FROM SUBJECT WHERE S_ID > 1
+        SELECT DISTINCT (S_NAME) ,S_CODE FROM SUBJECT WHERE S_ID > 1
     </select>
 </mapper>
