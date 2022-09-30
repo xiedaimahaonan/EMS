@@ -13,6 +13,30 @@
     <title>index</title>
 </head>
 <script>
+    //学科分类请求
+    $('input[name="S_CODE"]').click(function(){
+        alert($("input[name='S_CODE']:checked").serialize()) ;
+        $.ajax({
+            url: "/subject_update",
+            type: "post",
+            contentType: 'application/json; charset=UTF-8',
+            dataType: 'json',
+            data:$("input[name='S_CODE']:checked").serialize() ,
+            success: function (data) {
+                console.log(data)
+                console.log(data.data)
+                if (data.data == "登录成功") {
+                    console.log(data.data)
+                } else {
+                }
+            },
+            error: function (data) {
+            },
+        });
+    })
+</script>
+
+<script>
     $(document).ready(function () {
         $('#search-panel').hide();
         $("#advanced-search").click(function () {
@@ -141,6 +165,7 @@
 
 
         $('.search-panel .search-btn').click(function () {
+            //高级搜索面板
             alert($('#advanced_search_form').serialize());
             $.ajax({
                 url: "/adanced_search",
@@ -275,9 +300,12 @@
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable " style="height: 225px;background-color: #f6f6f6;">
-                                <#list SubjectMsg as subject>
-                                    <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox"  name="S_CODE" >${(S_NAME)!""}666</li>
-                                </#list>
+                                <form method="post" id="subject">
+                                    <#list SubjectMsg as subject>
+                                        <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox"  name="S_CODE"  value="">${(S_NAME)!""}666</li>
+                                    </#list>
+                                </form>
+
                             </ul>
                         </div>
                     </li>
