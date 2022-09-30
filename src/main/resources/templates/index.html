@@ -14,6 +14,7 @@
 </head>
 <script>
     $(document).ready(function () {
+        $('#search-panel').hide();
         $("#advanced-search").click(function () {
             $('#search-panel').toggle();
         });
@@ -22,17 +23,133 @@
 
 <script>
     $(document).ready(function () {
-        //发送高级搜索请求
+        //机构查看更多
+        var sumHeight_jigou=0;
+        $('#nav-li-item-jigou li').each(function(i,n){
+            sumHeight_jigou=sumHeight_jigou+$(n).height();
+            if(sumHeight_jigou==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-jigou').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more-jigou').text()
+            $('#nav-li-item-jigou li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more-jigou').text() == "查看更多>>") {
+                            $('#show_more-jigou').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more-jigou').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        //顾问团查看更多
+        var sumHeight_guwentuan=0;
+        $('#nav-li-item-guwentuan li').each(function(i,n){
+            sumHeight_guwentuan=sumHeight_guwentuan+$(n).height();
+            if(sumHeight_guwentuan==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-guwentuan').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more-guwentuan').text()
+            $('#nav-li-item-guwentuan li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more-guwentuan').text() == "查看更多>>") {
+                            $('#show_more-guwentuan').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more-guwentuan').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        //职称查看更多
+        var sumHeight_zhicheng=0;
+        $('#nav-li-item-zhicheng li').each(function(i,n){
+            sumHeight_zhicheng=sumHeight_zhicheng+$(n).height();
+            console.log($(n).text()+sumHeight_zhicheng)
+            if(sumHeight_zhicheng==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more_zhicheng').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more_zhicheng').text()
+            $('#nav-li-item-zhicheng li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more_zhicheng').text() == "查看更多>>") {
+                            $('#show_more_zhicheng').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more_zhicheng').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var sumHeight=0;
+        //专家领域查看更多
+        $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
+            sumHeight=sumHeight+$(n).height();
+            if(sumHeight==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-zhuanjialingyu').click(function () {
+            var sumHeight=0;
+            var txt=$('#show_more-zhuanjialingyu').text()
+
+                $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
+                    sumHeight=sumHeight+$(n).height();
+                    if(sumHeight==180){
+                        $(this).nextAll('li').toggle(0,function () {
+                            if($('#show_more-zhuanjialingyu').text()=="查看更多>>"){
+                                $('#show_more-zhuanjialingyu').text('收起')
+                            }else if(txt=='收起'){
+                                $('#show_more-zhuanjialingyu').text('查看更多>>')
+                            }
+                        });
+                    }
+                });
+        })
+
+
+
         $('.search-panel .search-btn').click(function () {
             alert($('#advanced_search_form').serialize());
             $.ajax({
-                url: "/avvanced_search",
+                url: "/adanced_search",
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
                 data:$('#advanced_search_form').serialize() ,
                 success: function (data) {
-                    //http://localhost:8088/user
+
                     console.log(data)
                     console.log(data.data)
                     if (data.data == "登录成功") {
@@ -174,11 +291,11 @@
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">顾问团人员</span>
                         </div>
                         <div class="collapse show" id="guwentuan" >
-                            <ul class="nav flex-column sub-menu" >
+                            <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
                                 <#list VisitPersonsMsg as visit>
                                     <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${visit}</a></li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                            <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;"> <p id="show_more-guwentuan" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
@@ -192,11 +309,11 @@
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">职称</span>
                         </div>
                         <div class="collapse show" id="zhicheng" >
-                            <ul class="nav flex-column sub-menu" >
+                            <ul class="nav flex-column sub-menu " id="nav-li-item-zhicheng">
                                 <#list ExpertTitleMsg as title>
                                     <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${title}</a></li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="#" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                            <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;"> <p id="show_more_zhicheng"  style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
@@ -210,11 +327,11 @@
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">专业领域</span>
                         </div>
                         <div class="collapse show" id="zhuanyelingyu" >
-                            <ul class="nav flex-column sub-menu" >
+                            <ul class="nav flex-column sub-menu " id="nav-li-item-zhuanjialingyu">
                                 <#list SpecialAreaMsg as special>
-                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${special}</a></li>
+                                    <li class="nav-item col-md-offset-6 " name="profession"> <a href="" style="color: black;">${special}</a></li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;"> <p id="show_more-zhuanjialingyu" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
@@ -228,11 +345,11 @@
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">机构</span>
                         </div>
                         <div class="collapse show" id="jigou" >
-                            <ul class="nav flex-column sub-menu" >
+                            <ul class="nav flex-column sub-menu" id="nav-li-item-jigou">
                                 <#list ExpertWorkPlace as workplace>
                                     <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${workplace}</a></li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                            <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;"> <p id="show_more-jigou" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
