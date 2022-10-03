@@ -1,7 +1,8 @@
 package com.uoh.ems.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.uoh.ems.bean.Users;
 import com.uoh.ems.bean.Result;
+import com.uoh.ems.bean.Users;
+import com.uoh.ems.common.Result;
 import com.uoh.ems.dao.UsersMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
