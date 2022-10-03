@@ -16,12 +16,15 @@
                 "username": $("#username").val(),
                 "password": $("#password").val()
             }
+            console.log(user)
+            console.log("====")
+            console.log(JSON.stringify(user))
             $.ajax({
                 url: "/login",
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
-                data: JSON.stringify(user),
+                data:JSON.stringify(user),
                 success: function (data) {
                     //http://localhost:8088/user
                     console.log(data)

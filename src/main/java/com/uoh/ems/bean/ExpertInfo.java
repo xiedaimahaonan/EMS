@@ -1,6 +1,7 @@
 package com.uoh.ems.bean;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -10,8 +11,9 @@ import lombok.Data;
  * @date:2022-9-17
  */
 @Data
-@TableName("EXPERTINFO")
+@TableName("ExpertInfo")
 public class ExpertInfo {
+    @TableId("E_ID")
     private Integer E_ID ;
     private String EXPERT_NAME;//专家名字
     private char EXPERT_SEX  ;//专家性别
@@ -21,8 +23,14 @@ public class ExpertInfo {
     private String EXPERT_TITLE;//职称
     private String EXPERT_LEVEL ;//学历
     private String EXPERT_TEL;
-    @TableField(exist = false)
+    @TableField(exist=false)
+    private String S_NAME;//专业领域 subject
+    @TableField(exist=false)
     private Integer S_CODE;
+    @TableField(exist=false)
+    private Integer pageNum;
+    @TableField(exist=false)
+    private Integer pageSize;
 
 
 }

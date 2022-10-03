@@ -9,7 +9,7 @@ import lombok.Data;
  * @description: 科目信息实体类
  * @date:2022-9-25
  */
-@TableName("SUBJECT")
+@TableName("Subject")
 @Data
 public class Subject {
     private Integer S_ID;//科目ID

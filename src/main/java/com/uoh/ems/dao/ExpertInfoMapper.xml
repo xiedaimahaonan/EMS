@@ -4,39 +4,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uoh.ems.dao.ExpertInfoMapper">
 
-    <select id="selectMsg">
-        select e.* s.SU_NAME
-        from EXPERTINFO as e,SUBJECT_CODE as s
-        <where>
-              e.id = s.SU_CODE
-            <if test="expert_name!null and expert_name!='' ">
-                and expert_name like '%'|| #{expert_name}||'%'
-            </if>
-            <if test="expert_work_place!null and expert_work_place!='' ">
-                and expert_work_place= #{expert_work_place}
-            </if>
-            <if test=" expert_title!null and  expert_title!='' ">
-                and  expert_title=#{expert_title}
-            </if>
-        </where>
+    <select id="getExpertTitle" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT DISTINCT (EXPERT_TITLE), E_ID
+        FROM EXPERTINFO
     </select>
-    <select id="getExpertTitle" resultType="java.lang.String">
-        SELECT DISTINCT (EXPERT_TITLE) FROM EXPERTINFO
+    <select id="getVisitPersons" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT DISTINCT(EXPERT_NAME), e.E_ID
+        FROM EXPERTINFO e
+                 JOIN TEM_ES t ON e.E_ID = t.EXPERT_ID
+                 LEFT JOIN SUBJECT S on S.S_ID = T.SUBJECT_ID
+        where S_CODE = 10
     </select>
-    <select id="getVisitPersons" resultType="java.lang.String">
-        SELECT DISTINCT(EXPERT_NAME) FROM EXPERTINFO e JOIN  TEM_ES t ON e.E_ID = t.EXPERT_ID
-        LEFT JOIN SUBJECT S on S.S_ID =T.SUBJECT_ID where S_CODE=10
-    </select>
-    <select id="getSpecialArea" resultType="java.lang.String">
-        SELECT DISTINCT (S_NAME) FROM SUBJECT WHERE S_CODE>10
-    </select>
-    <select id="getExpertWorkPlace" resultType="java.lang.String">
-        SELECT DISTINCT (EXPERT_WORK_PLACE) FROM  EXPERTINFO
+    <select id="getExpertWorkPlace" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT DISTINCT (EXPERT_WORK_PLACE), E_ID
+        FROM EXPERTINFO
     </select>
     <select id="getSubjectMsg" resultType="java.lang.String">
-        SELECT DISTINCT (S_NAME) FROM SUBJECT WHERE S_ID > 1
+        SELECT DISTINCT (S_NAME), E_ID
+        FROM SUBJECT
+        WHERE S_ID > 1
     </select>
     <select id="getExpertSelfMsg" resultType="com.uoh.ems.bean.ExpertInfo">
-        SELECT *FROM EXPERTINFO
+        SELECT *
+        FROM EXPERTINFO
     </select>
+    <select id="getExpertPageData" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT e.*,s.S_CODE,s.S_NAME,s.S_COMMENT FROM EXPERTINFO e JOIN TEM_ES t ON
+        e.E_ID = t.EXPERT_ID LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        <where>
+            <if test="expert.EXPERT_NAME!=null and expert.EXPERT_NAME!='' ">
+                and e.EXPERT_NAME like '%'|| #{expert.EXPERT_NAME}||'%'
+            </if>
+            <if test="expert.EXPERT_WORK_PLACE!=null and expert.EXPERT_WORK_PLACE!='' ">
+                and e.EXPERT_WORK_PLACE= #{expert.EXPERT_WORK_PLACE}
+            </if>
+            <if test=" expert.EXPERT_TITLE!=null and  expert.EXPERT_TITLE!='' ">
+                and e.EXPERT_TITLE=#{expert.EXPERT_TITLE}
+            </if>
+            <if test=" expert.S_NAME!=null and  expert.S_NAME!='' ">
+                and e.S_NAME =#{expert.S_NAME}
+            </if>
+            <if test=" expert.E_ID !=null and  expert.E_ID !='' ">
+                and e.E_ID =#{id}
+            </if>
+            <if test=" expert.S_CODE!=null and  expert.S_CODE !='' ">
+                and s.S_CODE=#{id}
+            </if>
+        </where>
+
+    </select>
+
 </mapper>

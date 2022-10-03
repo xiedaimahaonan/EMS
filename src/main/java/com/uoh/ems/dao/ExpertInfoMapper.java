@@ -3,6 +3,7 @@ package com.uoh.ems.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.uoh.ems.bean.ExpertInfo;
+import com.uoh.ems.bean.Subject;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Mapper
 public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
-    void selectMsg(@Param("page")Page<ExpertInfo> page, @Param("expertInfo") ExpertInfo expertInfo);
 
     /**
      * @parameter: null
@@ -19,7 +19,7 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
      * @return:  List<String>
      * @date:2022-9-27
      */
-    List<String> getExpertTitle();
+    List<ExpertInfo> getExpertTitle();
 
     /**
      * @parameter:null
@@ -28,16 +28,8 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
      * @return: List<String>
      * @date:2022-9-28
      */
-    List<String> getVisitPersons();
+    List<ExpertInfo> getVisitPersons();
 
-    /**
-     * @parameter:null
-     * @author: XDS
-     * @description: SpecialArea 获取专家领域信息
-     * @return: List<String>
-     * @date:2022-9-27
-     */
-    List<String> getSpecialArea();
 
     /**
      * @parameter:null
@@ -46,7 +38,7 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
      * @return: List<String>
      * @date:2022-9-27
      */
-    List<String> getExpertWorkPlace();
+    List<ExpertInfo> getExpertWorkPlace();
 
 
 
@@ -60,4 +52,12 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
     List<ExpertInfo> getExpertSelfMsg();
 
 
+    /**
+     * @parameter:
+     * @author: XDS
+     * @description:  分页
+     * @return: 2022-10-3
+     * @date:
+     */
+    List<ExpertInfo> getExpertPageData(@Param("expert") ExpertInfo expert,@Param("id")Integer id);
 }

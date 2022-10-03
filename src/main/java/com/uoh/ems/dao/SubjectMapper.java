@@ -18,4 +18,14 @@ public interface SubjectMapper extends BaseMapper<Subject> {
      * @date:
      */
     List<Subject> getSubjectMsg();
+
+    /**
+     * @parameter:null
+     * @author: XDS
+     * @description: SpecialArea 获取专家领域信息
+     * @return: List<String>
+     * @date:2022-9-27
+     */
+    List<Subject> getSpecialArea();
+
 }
