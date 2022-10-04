@@ -427,25 +427,45 @@
                 </ul>
             </nav>
         </div>
-        <div id="pageData">
-            <#--        亚男-->
-            <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">
-                <table align="left" style="margin-top: 5px;margin-bottom: 5px">
-                    <#list PageStarData as es >
-                        <tr>
-                            <td>
-                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>
-                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>
-                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>
-                                <p align="left" style="width: auto">主要成果:xxx</p>
-                            </td>
-                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"
-                                     style="width: 200px;height:200px"></td>
-                        </tr>
-                    </#list>
-                </table>
-            </div>
-            <div>
+<!--        <div id="pageData">-->
+<!--            <#&#45;&#45;        亚男&ndash;&gt;-->
+<!--            <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">-->
+<!--                <table align="left" style="margin-top: 5px;margin-bottom: 5px">-->
+<!--                    <#list PageStarData as es >-->
+<!--                        <tr>-->
+<!--                            <td>-->
+<!--                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>-->
+<!--                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>-->
+<!--                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>-->
+<!--                                <p align="left" style="width: auto">主要成果:xxx</p>-->
+<!--                            </td>-->
+<!--                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"-->
+<!--                                     style="width: 200px;height:200px"></td>-->
+<!--                        </tr>-->
+<!--                    </#list>-->
+<!--                </table>-->
+<!--            </div>-->
+                <div id="pageData">
+                <#list PageStarData as es >
+                <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">
+
+                    <span class="col-md-6 flex1">
+                        <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
+                        <div class="right">
+                            <p> 姓名:${(es.EXPERT_NAME)!""}</p>
+                            <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
+                            <p> 联系方式:${(es.EXPERT_TEL)!""}</p>
+                            <p> 主要成果:xxx</p>
+                        </div>
+                    </span>
+
+                </div>
+                </#list>
+                </div>
+
+
+
+                <div>
                 <#if  PageDataList??>
                     <div class="row">
                         <div class="col-sm-12">
