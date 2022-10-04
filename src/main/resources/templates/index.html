@@ -77,7 +77,7 @@
             <ul class="breadcrumb col-md-6" style="background-color: #f8f8f8;height: 50px;line-height: 35px;">
                 <li>
                     <i class="fa fa-home"></i>
-                    <a href="/Index">${indexShow}</a>
+                    <a href="/Index">${(indexShow)!""}</a>
                 </li>
 
                 <li>
@@ -158,9 +158,9 @@
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable " style="height: 225px;background-color: #f6f6f6;">
-                                <#list SubjectMsg as subject>
+                               <!-- <#list SubjectMsg as subject>
                                     <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox"  name="S_CODE" >${(S_NAME)!""}666</li>
-                                </#list>
+                                </#list>-->
                             </ul>
                         </div>
                     </li>
@@ -239,15 +239,64 @@
                 </ul>
             </nav>
 
+</div>
 
+<div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">
+
+    <div class="flex1">
+        <div class="left"><img src="../img/a.jpg"></div>
+        <div class="right">
+            <p> 姓名：xxx</p>
+            <p> 机构：</p>
+            <p> 联系方式：12345678</p>
+            <p> 主要成果：</p>
+        </div>
+    </div>
+    <div class="flex1">
+        <div class="left"><img src="../img/a.jpg"></div>
+        <div class="right">
+            <p> 姓名：xxx</p>
+            <p> 机构：</p>
+            <p> 联系方式：12345678</p>
+            <p> 主要成果：</p>
+        </div>
+    </div>
+    <div class="flex1">
+        <div class="left"><img src="../img/a.jpg"></div>
+        <div class="right">
+            <p> 姓名：xxx</p>
+            <p> 机构：</p>
+            <p> 联系方式：12345678</p>
+            <p> 主要成果：</p>
         </div>
     </div>
 </div>
+
+
+
+<div>
+    <div  style="height: 40px;float: left;margin: 15px">
+                每页显示<select name="selectList" size="1" style="font-size: 14px;height: 25px;width: 60px; text-align:left" >
+                <option value="six">6   </option>
+                <option value="twelve">12  </option>
+            </select>条
+    </div>
+                <!-- 创建一个名为rq的盒子，用来放分页项   -->
+                <div class="rq">
+                    <!-- 填充每一页的内容 -->
+                    <a href=" " style="">&lt;</a>
+                    <a href=" ">1</a>
+                    <a href=" ">2</a>
+                    <a href=" ">3</a>
+                    <a href=" ">4</a>
+                    <a href=" ">5</a>
+                    <a href=" ">...</a>
+                    <a href=" ">10</a>
+                    <a href=" ">&gt;</a>
+
+                </div>
 </div>
 
-</div>
-
-</div>
 
 </body>
 
