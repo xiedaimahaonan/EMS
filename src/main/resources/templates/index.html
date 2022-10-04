@@ -13,7 +13,32 @@
     <title>index</title>
 </head>
 <script>
+    //学科分类请求
+    $('input[name="S_CODE"]').click(function(){
+        alert($("input[name='S_CODE']:checked").serialize()) ;
+        $.ajax({
+            url: "/subject_update",
+            type: "post",
+            contentType: 'application/json; charset=UTF-8',
+            dataType: 'json',
+            data:$("input[name='S_CODE']:checked").serialize() ,
+            success: function (data) {
+                console.log(data)
+                console.log(data.data)
+                if (data.data == "登录成功") {
+                    console.log(data.data)
+                } else {
+                }
+            },
+            error: function (data) {
+            },
+        });
+    })
+</script>
+
+<script>
     $(document).ready(function () {
+        $('#search-panel').hide();
         $("#advanced-search").click(function () {
             $('#search-panel').toggle();
         });
@@ -22,17 +47,134 @@
 
 <script>
     $(document).ready(function () {
-        //发送高级搜索请求
+        //机构查看更多
+        var sumHeight_jigou=0;
+        $('#nav-li-item-jigou li').each(function(i,n){
+            sumHeight_jigou=sumHeight_jigou+$(n).height();
+            if(sumHeight_jigou==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-jigou').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more-jigou').text()
+            $('#nav-li-item-jigou li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more-jigou').text() == "查看更多>>") {
+                            $('#show_more-jigou').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more-jigou').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        //顾问团查看更多
+        var sumHeight_guwentuan=0;
+        $('#nav-li-item-guwentuan li').each(function(i,n){
+            sumHeight_guwentuan=sumHeight_guwentuan+$(n).height();
+            if(sumHeight_guwentuan==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-guwentuan').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more-guwentuan').text()
+            $('#nav-li-item-guwentuan li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more-guwentuan').text() == "查看更多>>") {
+                            $('#show_more-guwentuan').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more-guwentuan').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        //职称查看更多
+        var sumHeight_zhicheng=0;
+        $('#nav-li-item-zhicheng li').each(function(i,n){
+            sumHeight_zhicheng=sumHeight_zhicheng+$(n).height();
+            console.log($(n).text()+sumHeight_zhicheng)
+            if(sumHeight_zhicheng==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more_zhicheng').click(function () {
+            var sumHeight = 0;
+            var txt = $('#show_more_zhicheng').text()
+            $('#nav-li-item-zhicheng li').each(function (i, n) {
+                sumHeight = sumHeight + $(n).height();
+                if (sumHeight == 180) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if ($('#show_more_zhicheng').text() == "查看更多>>") {
+                            $('#show_more_zhicheng').text('收起')
+                        } else if (txt == '收起') {
+                            $('#show_more_zhicheng').text('查看更多>>')
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var sumHeight=0;
+        //专家领域查看更多
+        $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
+            sumHeight=sumHeight+$(n).height();
+            if(sumHeight==180){
+                $(this).nextAll('li').hide();
+            }
+        });
+        $('#show_more-zhuanjialingyu').click(function () {
+            var sumHeight=0;
+            var txt=$('#show_more-zhuanjialingyu').text()
+
+                $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
+                    sumHeight=sumHeight+$(n).height();
+                    if(sumHeight==180){
+                        $(this).nextAll('li').toggle(0,function () {
+                            if($('#show_more-zhuanjialingyu').text()=="查看更多>>"){
+                                $('#show_more-zhuanjialingyu').text('收起')
+                            }else if(txt=='收起'){
+                                $('#show_more-zhuanjialingyu').text('查看更多>>')
+                            }
+                        });
+                    }
+                });
+        })
+
+
+
         $('.search-panel .search-btn').click(function () {
+            //高级搜索面板
             alert($('#advanced_search_form').serialize());
             $.ajax({
-                url: "/avvanced_search",
+                url: "/adanced_search",
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
                 data:$('#advanced_search_form').serialize() ,
                 success: function (data) {
-                    //http://localhost:8088/user
+
                     console.log(data)
                     console.log(data.data)
                     if (data.data == "登录成功") {
@@ -45,15 +187,42 @@
                 },
             });
         });
-        // 清空输入框的值
-        $('.search-panel .clear_btn').click(function () {
-            $(" input[ name='expert_name' ] ").val("");
-            $(" input[ name='expert_work_place' ] ").val("");
-            $(" input[ name='expert_profession' ] ").val("");
-            $(" input[ name='expert_title' ] ").val("");
-        })
-
+// 清空输入框的值
+        $('#search-panel .clear_btn').click(function () {
+               alert('dianjil')
+            $(" input[ name='EXPERT_NAME' ] ").val("");
+            $(" input[ name='EXPERT_WORK_PLACE' ] ").val("");
+            $(" input[ name='S_NAME' ] ").val("");
+            $(" input[ name='EXPERT_TITLE' ] ").val("");
+        });
     });
+
+
+
+</script>
+<script>
+
+    function query(pageNum) {
+        if(pageNum == null)
+        {
+            pageNum =  $("#pageNum").text();
+        }
+        let query = $('#advanced_search_form').serialize()
+        query["PageNo"]=pageNum
+        console.log(query);
+        console.log("转化");
+        let json = JSON.stringify(query)
+        console.log(json);
+        $.ajax({
+            //url: "/IndexQuery",
+            type: "post",
+            data: $('#advanced_search_form').serialize()+"&PageNo="+_pageNum,
+            success: function (data) {
+                console.log(data);
+                //$("#pageData").html(data);
+            }
+        });
+    }
 </script>
 
 <body>
@@ -81,7 +250,7 @@
                 </li>
 
                 <li>
-                    <a href="#">${indexMsg}</a>
+                    <a href="#">${(indexMsg)!""}</a>
                 </li>
 
 
@@ -92,7 +261,7 @@
             </div>
         </div>
         <div class="divider col-lg-12" style="background-color: #e3e3e3;margin-top: 10px ;"></div>
-        <div class="col-md-4  search-panel" id="search-panel" style="background-color: #fff;">
+        <div class="col-md-4  search-panel" id="search-panel" >
             <div class="search-text">高级搜索</div>
             <form action="" method="post" id="advanced_search_form">
                 <table style="margin: auto;">
@@ -101,43 +270,25 @@
                         <td>
                             <p>姓&emsp;&emsp;名</p>
                         </td>
-                        <td> <input name="expert_name" id="expert_name" /></td>
+                        <td><input type="text" name="EXPERT_NAME" id="expert_name"/></td>
                     </tr>
                     <tr>
                         <td>
                             <p>机&emsp;&emsp;构</p>
-                            <#--<select class="" name=" ">
-                                <option value='' disabled selected style='display:none;'>请选择机构</option>
-                                <#list ExpertWorkPlace as workplace>
-                                    <option>${workplace!}</option>
-                                </#list>
-                            </select>-->
                         </td>
-                        <td> <input name="expert_work_place" id="expert_work_place" /></td>
+                        <td><input type="text"  name="EXPERT_WORK_PLACE" id="expert_work_place"/></td>
                     </tr>
                     <tr>
                         <td>
                             <p>领&emsp;&emsp;域</p>
-                          <#--  <select class="" name=" ">
-                                <option value='' disabled selected style='display:none;'>请选择专业领域</option>
-                                <#list SpecialAreaMsg as special>
-                                    <option>${special!}</option>
-                                </#list>
-                            </select>-->
                         </td>
-                        <td> <input name="expert_profession" id="expert_profession" /></td>
+                        <td><input  type="text" name="S_NAME" id="expert_profession"/></td>
                     </tr>
                     <tr>
                         <td>
                             <p>职&emsp;&emsp;称</p>
-                           <#-- <select class="" name=" ">
-                                <option value='' disabled selected style='display:none;'>请选择职称</option>
-                                <#list ExpertTitleMsg as title>
-                                    <option>${title!}</option>
-                                </#list>
-                            </select>-->
                         </td>
-                        <td> <input name="expert_title" id="expert_title" /></td>
+                        <td><input  type="text" name="EXPERT_TITLE" id="expert_title"/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -148,155 +299,227 @@
         <div class="col-md-4" style="height: auto; border-right: 1px #e3e3e3 solid;">
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <!-- partial:partials/_sidebar.ht2l -->
-                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;" >
+                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
 
                     <li class="nav-item" style="height:300px;margin-bottom: 10px;">
-                        <div class="nav-link"  href="#xuekefenlei" aria-expanded="false" aria-controls="ui-basic"
+                        <div class="nav-link" href="#xuekefenlei" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 75px;background-color: #db422a;">
-                            <span class="menu-title col-lg-offset-5" style="height: 75px;color: #fff;font-size: 30px;font-family:'黑体';line-height: 75px;">学科分类</span>
-                            <span class="col-md-offset-2" ><input type="button" value="清空"></span>
+                            <span class="menu-title col-lg-offset-5"
+                                  style="height: 75px;color: #fff;font-size: 30px;font-family:'黑体';line-height: 75px;">学科分类</span>
+                            <span class="col-md-offset-2"><input type="button" value="清空"></span>
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
-                            <ul class="nav flex-column sub-menu pre-scrollable " style="height: 225px;background-color: #f6f6f6;">
-                               <!-- <#list SubjectMsg as subject>
-                                    <li class="nav-item col-md-offset-6 nav_item" > <input type="checkbox"  name="S_CODE" >${(S_NAME)!""}666</li>
-                                </#list>-->
+                            <ul class="nav flex-column sub-menu pre-scrollable "
+                                style="height: 225px;background-color: #f6f6f6;">
+                                <form method="post" id="subject">
+                                    <#list SubjectMsg as su>
+                                        <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox"
+                                                                                             name="S_CODE"
+                                                                                             value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
+                                        </li>
+                                    </#list>
+                                </form>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
-                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;" >
+                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link"  href="#guwentuan" aria-expanded="false" aria-controls="ui-basic"
+                        <div class="nav-link" href="#guwentuan" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">顾问团人员</span>
+                            <span class="menu-title col-lg-offset-6"
+                                  style="height: 30px;line-height: 30px;">顾问团人员</span>
                         </div>
-                        <div class="collapse show" id="guwentuan" >
-                            <ul class="nav flex-column sub-menu" >
-                                <#list VisitPersonsMsg as visit>
-                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${visit}</a></li>
+                        <div class="collapse show" id="guwentuan">
+                            <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
+                                <#list VisitPersonsMsg as v>
+                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(v.e_ID)!""}"
+                                                                             style="color: black;">${(v.EXPERT_NAME)!""}</a>
+                                    </li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <div class="nav-item col-md-offset-6 col-md-6"
+                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-guwentuan"
+                                                                                        class="show_more"
+                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
+                                        查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
-                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;" >
+                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link"  href="#zhicheng" aria-expanded="false" aria-controls="ui-basic"
+                        <div class="nav-link" href="#zhicheng" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">职称</span>
                         </div>
-                        <div class="collapse show" id="zhicheng" >
-                            <ul class="nav flex-column sub-menu" >
-                                <#list ExpertTitleMsg as title>
-                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${title}</a></li>
+                        <div class="collapse show" id="zhicheng">
+                            <ul class="nav flex-column sub-menu " id="nav-li-item-zhicheng">
+                                <#list ExpertTitleMsg as t>
+                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(t.e_ID)!""}"
+                                                                             style="color: black;">${(t.EXPERT_TITLE)}</a>
+                                    </li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="#" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <div class="nav-item col-md-offset-6 col-md-6"
+                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more_zhicheng"
+                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
+                                        查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
-                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;" >
+                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link"  href="#zhuanyelingyu" aria-expanded="false" aria-controls="ui-basic"
+                        <div class="nav-link" href="#zhuanyelingyu" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">专业领域</span>
                         </div>
-                        <div class="collapse show" id="zhuanyelingyu" >
-                            <ul class="nav flex-column sub-menu" >
-                                <#list SpecialAreaMsg as special>
-                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${special}</a></li>
+                        <div class="collapse show" id="zhuanyelingyu">
+                            <ul class="nav flex-column sub-menu " id="nav-li-item-zhuanjialingyu">
+                                <#list SpecialAreaMsg as sp>
+                                    <#if sp.s_COMMENT??>
+                                        <li class="nav-item col-md-offset-6 " name="profession"><a
+                                                    href="${(sp.s_CODE)!""}"
+                                                    style="color: black;">${(sp.s_COMMENT)!""}</a></li>
+                                    <#else>
+                                        <li class="nav-item col-md-offset-6 " name="profession"><a
+                                                    href="/IndexLeftQuery/${(sp.s_CODE)!""}" style="color: black;">${(sp.s_NAME)!""}</a>
+                                        </li>
+                                    </#if>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <div class="nav-item col-md-offset-6 col-md-6"
+                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-zhuanjialingyu"
+                                                                                        class="show_more"
+                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
+                                        查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
-                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;" >
+                <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link"  href="#jigou" aria-expanded="false" aria-controls="ui-basic"
+                        <div class="nav-link" href="#jigou" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
                             <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">机构</span>
                         </div>
-                        <div class="collapse show" id="jigou" >
-                            <ul class="nav flex-column sub-menu" >
-                                <#list ExpertWorkPlace as workplace>
-                                    <li class="nav-item col-md-offset-6 " > <a href="" style="color: black;">${workplace}</a></li>
+                        <div class="collapse show" id="jigou">
+                            <ul class="nav flex-column sub-menu" id="nav-li-item-jigou">
+                                <#list ExpertWorkPlace as w>
+                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(w.e_ID)!""}"
+                                                                             style="color: black;">${(w.EXPERT_WORK_PLACE)!""}</a>
+                                    </li>
                                 </#list>
-                                <li class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;"> <a href="" style="color: #db422a;text-align: center;">查看更多&gt;&gt;</a></li>
+                                <div class="nav-item col-md-offset-6 col-md-6"
+                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-jigou"
+                                                                                        class="show_more"
+                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
+                                        查看更多&gt;&gt;</p></div>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
+        </div>
+        <div id="pageData">
+            <#--        亚男-->
+            <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">
+                <table align="left" style="margin-top: 5px;margin-bottom: 5px">
+                    <#list PageStarData as es >
+                        <tr>
+                            <td>
+                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>
+                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>
+                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>
+                                <p align="left" style="width: auto">主要成果:xxx</p>
+                            </td>
+                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"
+                                     style="width: 200px;height:200px"></td>
+                        </tr>
+                    </#list>
+                </table>
+            </div>
+            <div>
+                <#if  PageDataList??>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-left">
+                                <div class="dataTables_info" id="datatable1_info" style="margin-top: 28px">显示${PageDataList.total}项数据   共${PageDataList.pages}页  第${PageDataList.pageNum}页 </div>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="dataTables_paginate paging_bs_fulln" id="datatable1_paginate">
+                                    <ul class="pagination">
+                                        <li><a tabindex="0" class="paginate_button first" id="datatable1_first"
+                                               href="/ExamineeInfoManage?PageNo=1" >首页</a>
+                                        </li>
+
+                                        <#if PageDataList.pageNum lte 1>
+                                            <li class="disabled"><a class="paginate_button previous" herf = "#">上一页</a></li>
+                                        <#else>
+                                            <li>
+                                                <a tabindex="0" class="paginate_button previous" id="datatable1_previous"
+                                                   onclick="query(${PageDataList.pageNum}-1)">上一页</a></li>
+                                        </#if>
+
+                                        <#if PageDataList.pages gte 1>
+                                        <#--如果当前页往前查3页不是第2页-->
+                                            <#if ((PageDataList.pageNum - 3) > 2)>
+                                                <li><span class="text">…</span></li>
+                                            </#if>
+                                        <#--当前页的前3页和后3页-->
+                                            <#list (PageDataList.pageNum  - 3)..(PageDataList.pageNum  + 3) as pageNum>
+                                            <#--如果位于第一页和最后一页之间-->
+                                                <#if PageDataList.pageNum == pageNum>
+                                                    <li class="active"><a tabindex="0" href="#" onclick="query(${pageNum})" >${pageNum}</a>
+
+                                                    </li>
+                                                <#elseif (pageNum >= 1) && (pageNum <= PageDataList.pages)>
+                                                    <li>
+                                                        <a tabindex="0" onclick="query(${pageNum})">${pageNum}</a>
+                                                    </li>
+                                                </#if>
+                                            </#list>
+                                        <#--如果当前页往后查3页不是倒数第2页-->
+                                            <#if (PageDataList.pageNum + 3) < (PageDataList.pages - 1)>
+                                                <li><span class="text">…</span></li>
+                                            </#if>
+                                        </#if>
+
+
+                                        <#if PageDataList.pageNum gte PageDataList.pages>
+                                            <li class="disabled"><a class="paginate_button next" herf = "#">下一页</a></li>
+                                        <#else>
+                                            <li>
+                                                <a tabindex="0" class="paginate_button next" id="datatable1_next"
+                                                   onclick="query(${PageDataList.pageNum}+1)">下一页</a></li>
+                                        </#if>
+                                        <li><a tabindex="0" class="paginate_button last" id="datatable1_last"
+                                               href="/ExamineeInfoManage?PageNo=${PageDataList.pages}">尾页</a></li>
+                                    </ul>
+                                </ul>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </#if>
+            </div>
+        </div>
+
+<#--        -->
+    </div>
+</div>
+</div>
 
 </div>
 
-<div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">
-
-    <div class="flex1">
-        <div class="left"><img src="../img/a.jpg"></div>
-        <div class="right">
-            <p> 姓名：xxx</p>
-            <p> 机构：</p>
-            <p> 联系方式：12345678</p>
-            <p> 主要成果：</p>
-        </div>
-    </div>
-    <div class="flex1">
-        <div class="left"><img src="../img/a.jpg"></div>
-        <div class="right">
-            <p> 姓名：xxx</p>
-            <p> 机构：</p>
-            <p> 联系方式：12345678</p>
-            <p> 主要成果：</p>
-        </div>
-    </div>
-    <div class="flex1">
-        <div class="left"><img src="../img/a.jpg"></div>
-        <div class="right">
-            <p> 姓名：xxx</p>
-            <p> 机构：</p>
-            <p> 联系方式：12345678</p>
-            <p> 主要成果：</p>
-        </div>
-    </div>
 </div>
-
-
-
-<div>
-    <div  style="height: 40px;float: left;margin: 15px">
-                每页显示<select name="selectList" size="1" style="font-size: 14px;height: 25px;width: 60px; text-align:left" >
-                <option value="six">6   </option>
-                <option value="twelve">12  </option>
-            </select>条
-    </div>
-                <!-- 创建一个名为rq的盒子，用来放分页项   -->
-                <div class="rq">
-                    <!-- 填充每一页的内容 -->
-                    <a href=" " style="">&lt;</a>
-                    <a href=" ">1</a>
-                    <a href=" ">2</a>
-                    <a href=" ">3</a>
-                    <a href=" ">4</a>
-                    <a href=" ">5</a>
-                    <a href=" ">...</a>
-                    <a href=" ">10</a>
-                    <a href=" ">&gt;</a>
-
-                </div>
-</div>
-
 
 </body>
 

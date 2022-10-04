@@ -2,7 +2,6 @@ package com.uoh.ems.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.uoh.ems.bean.Result;
 import com.uoh.ems.bean.Users;
-
 import com.uoh.ems.dao.UsersMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+
 @Slf4j
 @Controller
 public class UserController {
-    @Autowired
+    @Resource
     private UsersMapper usersMapper;
 
     @RequestMapping("/user")
