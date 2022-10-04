@@ -33,21 +33,29 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <!--		oracle依赖-->
-        <!--		<dependency>-->
-        <!--			<groupId>com.oracle</groupId>-->
-        <!--			<artifactId>odbc6</artifactId>-->
-        <!--			<version>6.0</version>-->
-        <!--		</dependency>-->
-        <!--		driver-->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/ojdbc6.jar</systemPath>
         </dependency>
+        <!--		driver-->
+<!--        <dependency>-->
+<!--            <groupId>com.oracle.database.jdbc</groupId>-->
+<!--            <artifactId>ojdbc8</artifactId>-->
+<!--        </dependency>-->
         <!--		boot mybatis-plus 起步依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.3.4</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsqlparser</artifactId>
+                    <groupId>com.github.jsqlparser</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--		boot整合freemarker起步依赖-->
         <dependency>
@@ -76,8 +84,28 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.5</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mybatis-spring</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
-<!--        SpringSecurity -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.7</version>
+        </dependency>
+        <!--        SpringSecurity -->
      <!--   <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -93,15 +121,18 @@
         </plugins>
 
         <resources>
-                <resource>
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                    </includes>
-                    <filtering>false</filtering>
-                </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
-
     </build>
 
 </project>

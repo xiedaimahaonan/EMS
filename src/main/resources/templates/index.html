@@ -187,15 +187,18 @@
                 },
             });
         });
-        // 清空输入框的值
-        $('.search-panel .clear_btn').click(function () {
+// 清空输入框的值
+        $('#search-panel .clear_btn').click(function () {
+
             $(" input[ name='expert_name' ] ").val("");
             $(" input[ name='expert_work_place' ] ").val("");
             $(" input[ name='expert_profession' ] ").val("");
             $(" input[ name='expert_title' ] ").val("");
-        })
-
+        });
     });
+
+
+
 </script>
 <script>
 
@@ -258,7 +261,7 @@
             </div>
         </div>
         <div class="divider col-lg-12" style="background-color: #e3e3e3;margin-top: 10px ;"></div>
-        <div class="col-md-4  search-panel" id="search-panel" style="background-color: #fff;">
+        <div class="col-md-4  search-panel" id="search-panel" >
             <div class="search-text">高级搜索</div>
             <form action="" method="post" id="advanced_search_form">
                 <table style="margin: auto;">

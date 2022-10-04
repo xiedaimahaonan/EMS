@@ -77,14 +77,16 @@ input:focus {
 }
 
 .search-panel {
+    background-color: #ffffff;
     width: 400px;
     height: 250px;
     border: 1px black solid;
     border-radius: 4px;
     position: absolute;
-    left: 775px;
+    left: 785px;
     top: 535px;
     display: block;
+    z-index: 2;
 }
 .search-panel .search-text {
     width: 80px;

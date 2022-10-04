@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="css/login_css.css" >
+    <link rel="stylesheet" type="text/css" href="css/login_css.css">
+    <style>
+
+
+    </style>
     <script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
 
     <script type="text/javascript">
@@ -33,11 +37,17 @@
                         $(location).attr('href', "Index")
                         console.log(data.data)
                     } else {
-
+                        $('.red .box-login-error').show();
+                        setTimeout(function () {
+                            $('.red .box-login-error').hide();
+                        },3000)
                     }
                 },
                 error: function (data) {
-
+                    $('.red .box-login-error').show();
+                    setTimeout(function () {
+                        $('.red .box-login-error').hide();
+                    },3000)
                 },
             });
         }
@@ -51,6 +61,11 @@
         <div class="text">红河州理论人才专家库系统</div>
     </div>
     <div class="red">
+        <div class="box-login-error"  style="display: none">
+            <p class="error">登陆失败</p>
+            <div class="error-user-psw">很抱歉您的用户名或密码错误，无法进入红河州理论人
+                才专家库系统，请您查证后重新输入</div>
+        </div>
         <div class="login-panel">
             <form action="#" method="post" id="login">
                 <div class="form-group">
