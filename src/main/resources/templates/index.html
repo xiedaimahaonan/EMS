@@ -189,11 +189,11 @@
         });
 // 清空输入框的值
         $('#search-panel .clear_btn').click(function () {
-
-            $(" input[ name='expert_name' ] ").val("");
-            $(" input[ name='expert_work_place' ] ").val("");
-            $(" input[ name='expert_profession' ] ").val("");
-            $(" input[ name='expert_title' ] ").val("");
+               alert('dianjil')
+            $(" input[ name='EXPERT_NAME' ] ").val("");
+            $(" input[ name='EXPERT_WORK_PLACE' ] ").val("");
+            $(" input[ name='S_NAME' ] ").val("");
+            $(" input[ name='EXPERT_TITLE' ] ").val("");
         });
     });
 
@@ -439,7 +439,7 @@
                                 <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>
                                 <p align="left" style="width: auto">主要成果:xxx</p>
                             </td>
-                            <td><img src="/static/img/ES/${(es.e_ID)!""}.jpg" align="texttop"
+                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"
                                      style="width: 200px;height:200px"></td>
                         </tr>
                     </#list>
