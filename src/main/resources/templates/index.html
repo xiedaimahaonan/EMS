@@ -12,29 +12,7 @@
     <link rel="stylesheet" href="css/reset.css" type="text/css">
     <title>index</title>
 </head>
-<script>
-    //学科分类请求
-    $('input[name="S_CODE"]').click(function(){
-        alert($("input[name='S_CODE']:checked").serialize()) ;
-        $.ajax({
-            url: "/subject_update",
-            type: "post",
-            contentType: 'application/json; charset=UTF-8',
-            dataType: 'json',
-            data:$("input[name='S_CODE']:checked").serialize() ,
-            success: function (data) {
-                console.log(data)
-                console.log(data.data)
-                if (data.data == "登录成功") {
-                    console.log(data.data)
-                } else {
-                }
-            },
-            error: function (data) {
-            },
-        });
-    })
-</script>
+
 
 <script>
     $(document).ready(function () {
@@ -42,6 +20,32 @@
         $("#advanced-search").click(function () {
             $('#search-panel').toggle();
         });
+
+        $('#clear_subject').click(function () {
+            // alert("kvvlkaoskf")
+            $("input[name='S_CODE']:checked").prop('checked',false);
+        })
+
+        $('input[name="S_CODE"]').click(function(){
+            // alert($("input[name='S_CODE']:checked").serialize()) ;
+            $.ajax({
+                url: "/subject_update",
+                type: "post",
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                data:$("input[name='S_CODE']:checked").serialize() ,
+                success: function (data) {
+                    console.log(data)
+                    console.log(data.data)
+                    if (data.data == "登录成功") {
+                        console.log(data.data)
+                    } else {
+                    }
+                },
+                error: function (data) {
+                },
+            });
+        })
     });
 </script>
 
@@ -56,13 +60,13 @@
             }
         });
         $('#show_more-jigou').click(function () {
-            var sumHeight = 0;
+            var sumHeight2 = 0;
             var txt = $('#show_more-jigou').text()
             $('#nav-li-item-jigou li').each(function (i, n) {
-                sumHeight = sumHeight + $(n).height();
-                if (sumHeight == 180) {
+                sumHeight2 = sumHeight2 + $(n).height();
+                if (sumHeight2 == 180) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if ($('#show_more-jigou').text() == "查看更多>>") {
+                        if (txt == "查看更多>>") {
                             $('#show_more-jigou').text('收起')
                         } else if (txt == '收起') {
                             $('#show_more-jigou').text('查看更多>>')
@@ -85,12 +89,12 @@
         });
         $('#show_more-guwentuan').click(function () {
             var sumHeight = 0;
-            var txt = $('#show_more-guwentuan').text()
+            var txt = $('#show_more-guwentuan').text().trim()
             $('#nav-li-item-guwentuan li').each(function (i, n) {
                 sumHeight = sumHeight + $(n).height();
                 if (sumHeight == 180) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if ($('#show_more-guwentuan').text() == "查看更多>>") {
+                        if ($('#show_more-guwentuan').text().trim() == "查看更多>>") {
                             $('#show_more-guwentuan').text('收起')
                         } else if (txt == '收起') {
                             $('#show_more-guwentuan').text('查看更多>>')
@@ -106,30 +110,31 @@
 <script>
     $(document).ready(function () {
         //职称查看更多
-        var sumHeight_zhicheng=0;
+        var sumHeightzhingcheng=0;
+        //专家领域查看更多
         $('#nav-li-item-zhicheng li').each(function(i,n){
-            sumHeight_zhicheng=sumHeight_zhicheng+$(n).height();
-            console.log($(n).text()+sumHeight_zhicheng)
-            if(sumHeight_zhicheng==180){
+            sumHeightzhingcheng=sumHeightzhingcheng+$(n).height();
+
+            if(sumHeightzhingcheng==180){
                 $(this).nextAll('li').hide();
             }
         });
         $('#show_more_zhicheng').click(function () {
-            var sumHeight = 0;
-            var txt = $('#show_more_zhicheng').text()
-            $('#nav-li-item-zhicheng li').each(function (i, n) {
-                sumHeight = sumHeight + $(n).height();
-                if (sumHeight == 180) {
-                    $(this).nextAll('li').toggle(0, function () {
-                        if ($('#show_more_zhicheng').text() == "查看更多>>") {
-                            $('#show_more_zhicheng').text('收起')
-                        } else if (txt == '收起') {
-                            $('#show_more_zhicheng').text('查看更多>>')
+            var sumHeight1=0;
+            var txt=$('#show_more_zhicheng').text()
+            $('#nav-li-item-zhicheng li').each(function(i,n){
+                sumHeight1=sumHeight1+$(n).height();
+                if(sumHeight1==180){
+                    $(this).nextAll('li').toggle(0,function () {
+                        if(txt=="查看更多>>"){
+                            $('#show_more_zhicheng').text("收起");
+                        }else if(txt=="收起"){
+                            $('#show_more_zhicheng').text("查看更多>>");
                         }
                     });
                 }
             });
-        });
+        })
     });
 
 </script>
@@ -140,19 +145,19 @@
         //专家领域查看更多
         $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
             sumHeight=sumHeight+$(n).height();
-            if(sumHeight==180){
+
+            if(sumHeight==212){
                 $(this).nextAll('li').hide();
             }
         });
         $('#show_more-zhuanjialingyu').click(function () {
             var sumHeight=0;
-            var txt=$('#show_more-zhuanjialingyu').text()
-
+            var txt=$('#show_more-zhuanjialingyu').text().trim()
                 $('#nav-li-item-zhuanjialingyu li').each(function(i,n){
                     sumHeight=sumHeight+$(n).height();
-                    if(sumHeight==180){
+                    if(sumHeight==212){
                         $(this).nextAll('li').toggle(0,function () {
-                            if($('#show_more-zhuanjialingyu').text()=="查看更多>>"){
+                            if($('#show_more-zhuanjialingyu').text().trim()=="查看更多>>"){
                                 $('#show_more-zhuanjialingyu').text('收起')
                             }else if(txt=='收起'){
                                 $('#show_more-zhuanjialingyu').text('查看更多>>')
@@ -189,7 +194,6 @@
         });
 // 清空输入框的值
         $('#search-panel .clear_btn').click(function () {
-               alert('dianjil')
             $(" input[ name='EXPERT_NAME' ] ").val("");
             $(" input[ name='EXPERT_WORK_PLACE' ] ").val("");
             $(" input[ name='S_NAME' ] ").val("");
@@ -293,7 +297,7 @@
                     </tbody>
                 </table>
                 <input type="button" value="搜索" class="search-btn">
-                <input type="button" value="清空" class="clear_btn">
+                <input type="button" value="清空" class="clear_btn" >
             </form>
         </div>
         <div class="col-md-4" style="height: auto; border-right: 1px #e3e3e3 solid;">
@@ -306,16 +310,15 @@
                              style="height: 75px;background-color: #db422a;">
                             <span class="menu-title col-lg-offset-5"
                                   style="height: 75px;color: #fff;font-size: 30px;font-family:'黑体';line-height: 75px;">学科分类</span>
-                            <span class="col-md-offset-2"><input type="button" value="清空"></span>
+                            <span class="col-md-offset-2"><input type="button" id="clear_subject" value="清空"></span>
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable "
                                 style="height: 225px;background-color: #f6f6f6;">
                                 <form method="post" id="subject">
                                     <#list SubjectMsg as su>
-                                        <li class="nav-item col-md-offset-6 nav_item"><input type="checkbox"
-                                                                                             name="S_CODE"
-                                                                                             value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
+                                        <li class="nav-item col-md-offset-6 nav_item">
+                                            <input type="checkbox" name="S_CODE" value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
                                         </li>
                                     </#list>
                                 </form>
@@ -335,15 +338,13 @@
                         <div class="collapse show" id="guwentuan">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
                                 <#list VisitPersonsMsg as v>
-                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(v.e_ID)!""}"
-                                                                             style="color: black;">${(v.EXPERT_NAME)!""}</a>
+                                    <li class="nav-item col-md-offset-6 ">
+                                        <a href="/IndexLeftQuery/${(v.e_ID)!""}" style="color: black;">${(v.EXPERT_NAME)!""}</a>
                                     </li>
                                 </#list>
-                                <div class="nav-item col-md-offset-6 col-md-6"
-                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-guwentuan"
-                                                                                        class="show_more"
-                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
-                                        查看更多&gt;&gt;</p></div>
+                                <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;">
+                                    <p id="show_more-guwentuan" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p>
+                                </div>
                             </ul>
                         </div>
                     </li>
@@ -363,10 +364,9 @@
                                                                              style="color: black;">${(t.EXPERT_TITLE)}</a>
                                     </li>
                                 </#list>
-                                <div class="nav-item col-md-offset-6 col-md-6"
-                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more_zhicheng"
-                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
-                                        查看更多&gt;&gt;</p></div>
+                                <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;">
+                                    <p id="show_more_zhicheng" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p>
+                                </div>
                             </ul>
                         </div>
                     </li>
@@ -392,11 +392,9 @@
                                         </li>
                                     </#if>
                                 </#list>
-                                <div class="nav-item col-md-offset-6 col-md-6"
-                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-zhuanjialingyu"
-                                                                                        class="show_more"
-                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
-                                        查看更多&gt;&gt;</p></div>
+                                <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;">
+                                    <p id="show_more-zhuanjialingyu" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p>
+                                </div>
                             </ul>
                         </div>
                     </li>
@@ -416,40 +414,35 @@
                                                                              style="color: black;">${(w.EXPERT_WORK_PLACE)!""}</a>
                                     </li>
                                 </#list>
-                                <div class="nav-item col-md-offset-6 col-md-6"
-                                     style="background-color: #e3e3e3;height: 36px;"><p id="show_more-jigou"
-                                                                                        class="show_more"
-                                                                                        style="color: #db422a;text-align: center;height: 36px;line-height: 36px">
-                                        查看更多&gt;&gt;</p></div>
+                                <div class="nav-item col-md-offset-6 col-md-6" style="background-color: #e3e3e3;height: 36px;">
+                                    <p id="show_more-jigou" class="show_more" style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p>
+                                </div>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </nav>
         </div>
-<!--        <div id="pageData">-->
-<!--            <#&#45;&#45;        亚男&ndash;&gt;-->
-<!--            <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">-->
-<!--                <table align="left" style="margin-top: 5px;margin-bottom: 5px">-->
-<!--                    <#list PageStarData as es >-->
-<!--                        <tr>-->
-<!--                            <td>-->
-<!--                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>-->
-<!--                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>-->
-<!--                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>-->
-<!--                                <p align="left" style="width: auto">主要成果:xxx</p>-->
-<!--                            </td>-->
-<!--                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"-->
-<!--                                     style="width: 200px;height:200px"></td>-->
-<!--                        </tr>-->
-<!--                    </#list>-->
-<!--                </table>-->
-<!--            </div>-->
-                <div id="pageData">
-                <#list PageStarData as es >
-                <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">
 
-                    <span class="col-md-6 flex1">
+            <#--        亚男-->
+            <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">
+<#--                <table align="left" style="margin-top: 5px;margin-bottom: 5px;">-->
+<#--                    <#list PageStarData as es >-->
+<#--                        <tr>-->
+<#--                            <td>-->
+<#--                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>-->
+<#--                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>-->
+<#--                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>-->
+<#--                                <p align="left" style="width: auto">主要成果:xxx</p>-->
+<#--                            </td>-->
+<#--                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"-->
+<#--                                     style="width: 200px;height:200px"></td>-->
+<#--                        </tr>-->
+<#--                    </#list>-->
+<#--                </table>-->
+                <#list PageStarData as es >
+                    <div class="col-lg-4">
+                        <span class="flex1" style="margin-right: 10px">
                         <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
                         <div class="right">
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
@@ -458,14 +451,11 @@
                             <p> 主要成果:xxx</p>
                         </div>
                     </span>
+                    </div>
 
-                </div>
                 </#list>
-                </div>
+            </div>
 
-
-
-                <div>
                 <#if  PageDataList??>
                     <div class="row">
                         <div class="col-sm-12">
