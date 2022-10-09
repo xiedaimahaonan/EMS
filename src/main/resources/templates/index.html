@@ -27,23 +27,25 @@
         })
 
         $('input[name="S_CODE"]').click(function(){
-            alert($("input[name='S_CODE']:checked").serialize()) ;
+            // alert($("input[name='S_CODE']:checked").serialize()) ;
+            // var inputS_CODE=$("input[name='S_CODE']:checked").serialize()
+            var S_CODE=[];
+            $("input[name='S_CODE']:checked").each(function (i) {
+                S_CODE[i]=$(this).val()
+            })
+            console.log(S_CODE)
+
             $.ajax({
-                url: "/subject_update",
+                url: "/subjectQuery",
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
-                dataType: 'json',
-                data:JSON.stringify($("input[name='S_CODE']:checked").serialize()) ,
+                dataType: "json",
+
+                data:JSON.stringify(S_CODE),
                 success: function (data) {
+
                     console.log(data)
-                    console.log(data.data)
-                    if (data.data == "登录成功") {
-                        console.log(data.data)
-                    } else {
-                    }
-                },
-                error: function (data) {
-                },
+                }
             });
         })
     });

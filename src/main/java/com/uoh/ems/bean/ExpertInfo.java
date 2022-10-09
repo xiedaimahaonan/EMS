@@ -26,7 +26,7 @@ public class ExpertInfo {
     @TableField(exist=false)
     private String S_NAME;//专业领域 subject
     @TableField(exist=false)
-    private Integer S_CODE;
+    private String S_CODE;
     @TableField(exist=false)
     private Integer pageNum;
     @TableField(exist=false)

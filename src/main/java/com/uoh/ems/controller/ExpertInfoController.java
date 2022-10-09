@@ -2,17 +2,16 @@ package com.uoh.ems.controller;
 
 
 import com.uoh.ems.bean.ExpertInfo;
+import com.uoh.ems.bean.Subject;
 import com.uoh.ems.dao.ExpertInfoMapper;
 import com.uoh.ems.dao.SubjectMapper;
 import com.uoh.ems.service.ExpertInfoService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class ExpertInfoController {
@@ -22,6 +21,7 @@ public class ExpertInfoController {
     private SubjectMapper subjectMapper;
     @Resource
     private ExpertInfoService expertInfoService;
+    private List<String> s_CODE;
 
     /**
      * @parameter: pagNo PagNum
@@ -43,6 +43,16 @@ public class ExpertInfoController {
         mv.addObject("ExpertWorkPlace",expertInfoMapper.getExpertWorkPlace());
         return mv;
     }
+
+@RequestMapping(value = "/subjectQuery",method = RequestMethod.POST)
+@ResponseBody
+public  void getsubjectUpdate(@RequestBody List<String> S_CODE){
+for (String item :S_CODE){
+    System.out.println(item);
+}
+
+
+}
 
     /**
      * @parameter: ExpertInfo
