@@ -169,22 +169,40 @@
             });
         })
 
-            var lastInput = null;// 上一次输入的延迟
-            $("input[id='search_name']").bind("input propertychange", function () {
-                clearTimeout(lastInput);
-                lastInput = setTimeout(function () {        // 在你停止输入1500ms后，发送请求
-                    $.ajax({
-                        url:"D",
-                        type: "post",
-                        contentType: 'application/json; charset=UTF-8',
-                        dataType: 'json',
-                        data:JSON.stringify($("input[id='search_name']").val()),
-                        success:function (data) {
-                            console.log(data)
-                        }
-                    })
-                }, 1500)
-            })
+        $("input[id='search_name']").on('keypress',function (e) {
+            var keycode=e.keyCode;
+            if(keycode='13') {
+                e.preventDefault();
+                console.log($(this).val())
+                $.ajax({
+                    url: "/searchName",
+                    type: "post",
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json',
+                    data: JSON.stringify($("input[id='search_name']").val()),
+                    success: function (data) {
+                        console.log(data)
+                    }
+                })
+            }
+        });
+
+            // var lastInput = null;// 上一次输入的延迟
+            // $("input[id='search_name']").bind("input propertychange", function () {
+            //     clearTimeout(lastInput);
+            //     lastInput = setTimeout(function () {        // 在你停止输入1500ms后，发送请求
+            //         $.ajax({
+            //             url:"/searchName",
+            //             type: "post",
+            //             contentType: 'application/json; charset=UTF-8',
+            //             dataType: 'json',
+            //             data:JSON.stringify($("input[id='search_name']").val()),
+            //             success:function (data) {
+            //                 console.log(data)
+            //             }
+            //         })
+            //     }, 1500)
+            // })
 
         $('.search-panel .search-btn').click(function () {
             //高级搜索面板
