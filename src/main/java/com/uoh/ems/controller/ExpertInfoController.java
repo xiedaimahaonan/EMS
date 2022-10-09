@@ -50,9 +50,12 @@ public  void getsubjectUpdate(@RequestBody List<String> S_CODE){
 for (String item :S_CODE){
     System.out.println(item);
 }
-
-
 }
+    @RequestMapping(value = "/searchName",method = RequestMethod.POST)
+    @ResponseBody
+    public  void getsubjectName(@RequestBody String expertName){
+            System.out.println(expertName);
+    }
 
     /**
      * @parameter: ExpertInfo
