@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class Subject {
     private Integer S_ID;//科目ID
-    private Integer S_CODE;//科目代码
+    private String S_CODE;//科目代码
     private  String S_NAME;//科目名
     private String S_COMMENT;//科目备注
 }
