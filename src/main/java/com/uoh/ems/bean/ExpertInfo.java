@@ -24,13 +24,14 @@ public class ExpertInfo {
     private String EXPERT_LEVEL ;//学历
     private String EXPERT_TEL;
     @TableField(exist=false)
-    private String S_NAME;//专业领域 subject
+    private Integer marker;
+    @TableField(exist=false)
+    private String S_NAME; //专业领域 subject
     @TableField(exist=false)
     private String S_CODE;
     @TableField(exist=false)
     private Integer pageNum;
     @TableField(exist=false)
     private Integer pageSize;
-
 
 }

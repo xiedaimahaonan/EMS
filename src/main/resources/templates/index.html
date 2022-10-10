@@ -22,13 +22,9 @@
         });
 
         $('#clear_subject').click(function () {
-            // alert("kvvlkaoskf")
             $("input[name='S_CODE']:checked").prop('checked', false);
         })
-
         $('input[name="S_CODE"]').click(function () {
-            // alert($("input[name='S_CODE']:checked").serialize()) ;
-            // var inputS_CODE=$("input[name='S_CODE']:checked").serialize()
             var S_CODE = [];
             $("input[name='S_CODE']:checked").each(function (i) {
                 S_CODE[i] = $(this).val()
@@ -40,10 +36,8 @@
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
                 dataType: "json",
-
                 data: JSON.stringify(S_CODE),
                 success: function (data) {
-
                     console.log(data)
                 }
             });
@@ -168,63 +162,22 @@
                 }
             });
         })
-
+          /*姓名*/
         $("input[id='search_name']").on('keypress',function (e) {
             var keycode=e.keyCode;
             if(keycode='13') {
                 e.preventDefault();
                 console.log($(this).val())
                 $.ajax({
-                    url: "/searchName",
-                    type: "post",
-                    contentType: 'application/json; charset=UTF-8',
-                    dataType: 'json',
-                    data: JSON.stringify($("input[id='search_name']").val()),
+                    url: "/IndexQuery",
+                    type: "POST",
+                    //data: JSON.stringify($("input[id='search_name']").val()),
+                    data: $("input[id='search_name']").val(),
                     success: function (data) {
                         console.log(data)
                     }
                 })
             }
-        });
-
-            // var lastInput = null;// 上一次输入的延迟
-            // $("input[id='search_name']").bind("input propertychange", function () {
-            //     clearTimeout(lastInput);
-            //     lastInput = setTimeout(function () {        // 在你停止输入1500ms后，发送请求
-            //         $.ajax({
-            //             url:"/searchName",
-            //             type: "post",
-            //             contentType: 'application/json; charset=UTF-8',
-            //             dataType: 'json',
-            //             data:JSON.stringify($("input[id='search_name']").val()),
-            //             success:function (data) {
-            //                 console.log(data)
-            //             }
-            //         })
-            //     }, 1500)
-            // })
-
-        $('.search-panel .search-btn').click(function () {
-            //高级搜索面板
-            alert($('#advanced_search_form').serialize());
-            $.ajax({
-                url: "/adanced_search",
-                type: "post",
-                contentType: 'application/json; charset=UTF-8',
-                dataType: 'json',
-                data: JSON.stringify($('#advanced_search_form').serialize()),
-                success: function (data) {
-                    console.log(data)
-                    console.log(data.data)
-                    if (data.data == "登录成功") {
-                        console.log(data.data)
-                    } else {
-
-                    }
-                },
-                error: function (data) {
-                },
-            });
         });
 // 清空输入框的值
         $('#search-panel .clear_btn').click(function () {
@@ -236,26 +189,33 @@
     });
 
 
+
 </script>
 <script>
-
     function query(pageNum) {
-        if (pageNum == null) {
-            pageNum = $("#pageNum").text();
+        if(pageNum == null)
+        {
+            pageNum =  $("#pageNum").text();
         }
-        let query = $('#advanced_search_form').serialize()
-        query["PageNo"] = pageNum
-        console.log(query);
-        console.log("转化");
-        let json = JSON.stringify(query)
-        console.log(json);
+        //pageSize=$("#pageSizeData").val()
+        //下拉表change事件
+       /* let pageSize
+        $("#pageSizeData").change(function() {
+            pageSize = $("#pageSizeData option:selected").val()
+            console.log(pageSize)
+            console.log("========")
+            $("#pageSizeInput").val(pageSize)
+            console.log($("#pageSizeInput").val())
+        })*/
+
         $.ajax({
-            //url: "/IndexQuery",
-            type: "post",
-            data: $('#advanced_search_form').serialize() + "&PageNo=" + _pageNum,
+            url: "/IndexQuery",
+            type: "POST",
+            data: $('#advanced_search_form').serialize()+"&pageNum="+pageNum,
+            //data: $('#advanced_search_form').serialize()+"&pageNum="+pageNum+"$pageSize"=pageSize,
             success: function (data) {
-                console.log(data);
-                //$("#pageData").html(data);
+                //数据回显
+                $('#pageData').html(data)
             }
         });
     }
@@ -288,10 +248,11 @@
                 </li>
 
             </ul>
-            <div class="col-md-6" style=" height: 50px; position: relative;">
-                <input type="text" class="col-md-6 search" name="search" id="search_name" placeholder="请输入学者姓名">
-                <span id="advanced-search" class="advanced-search">高级搜索</span>
-            </div>
+
+                <div class="col-md-6" style=" height: 50px; position: relative;">
+                    <input type="text" class="col-md-6 search" name="EXPERT_NAME"  id="search_name" placeholder="请输入学者姓名">
+                    <span id="advanced-search" class="advanced-search">高级搜索</span>
+                </div>
         </div>
         <div class="divider col-lg-12" style="background-color: #e3e3e3;margin-top: 10px ;"></div>
         <div class="col-md-4  search-panel" id="search-panel">
@@ -326,7 +287,7 @@
                     </tbody>
                 </table>
                 <input type="button" value="搜索" class="search-btn">
-                <input type="button" value="清空" class="clear_btn">
+                <input type="button" value="清空" class="clear_btn" >
             </form>
         </div>
         <div class="col-md-4" style="height: auto; border-right: 1px #e3e3e3 solid;">
@@ -347,8 +308,7 @@
                                 <form method="post" id="subject">
                                     <#list SubjectMsg as su>
                                         <li class="nav-item col-md-offset-6 nav_item">
-                                            <input type="checkbox" name="S_CODE"
-                                                   value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
+                                            <input type="checkbox" name="S_CODE" value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
                                         </li>
                                     </#list>
                                 </form>
@@ -463,110 +423,90 @@
                 </ul>
             </nav>
         </div>
-
-        <#--        亚男-->
-        <div class="col-lg-8" style=" border-bottom: 1px solid #a7a3a3; height:245px; margin-bottom: 20px">
-            <#--                <table align="left" style="margin-top: 5px;margin-bottom: 5px;">-->
-            <#--                    <#list PageStarData as es >-->
-            <#--                        <tr>-->
-            <#--                            <td>-->
-            <#--                                <p align="left" style="width: auto">姓名:${(es.EXPERT_NAME)!""}</p>-->
-            <#--                                <p align="left" style="width: auto">机构:${(es.EXPERT_WORK_PLACE)!""}</p>-->
-            <#--                                <p align="left" style="width: auto">联系方式:${(es.EXPERT_TEL)!""}</p>-->
-            <#--                                <p align="left" style="width: auto">主要成果:xxx</p>-->
-            <#--                            </td>-->
-            <#--                            <td><img src="img/ES/${(es.e_ID)!""}.jpg" align="texttop"-->
-            <#--                                     style="width: 200px;height:200px"></td>-->
-            <#--                        </tr>-->
-            <#--                    </#list>-->
-            <#--                </table>-->
-            <#list PageStarData as es >
-                <div class="col-lg-6">
-                        <span class="flex1">
+        <section id="bottomLine">
+        <div id="pageData">
+            <#if PageStarData??>
+                <#list PageStarData as es >
+                <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">-->
+                    <div class="col-lg-8" style=" height:245px; margin-bottom: 20px;height:245px">
+                     <span class="col-md-6 flex1">
                         <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
                         <div class="right">
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
                             <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
                             <p> 联系方式:${(es.EXPERT_TEL)!""}</p>
-                            <p> 主要成果:xxx</p>
+                            <p> 主要成果:</p>
+                            <#--<iframe src="/expertResult"style="width:105px;height:100px; border-style: none"></iframe><-->
                         </div>
-                    </span>
-                </div>
-
-            </#list>
-        </div>
-
-        <#if  PageDataList??>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="pull-left">
-                        <div class="dataTables_info" id="datatable1_info" style="margin-top: 28px">
-                            显示${PageDataList.total}项数据 共${PageDataList.pages}页 第${PageDataList.pageNum}页
-                        </div>
+                      </span>
                     </div>
-                    <div class="pull-right">
-                        <ul class="dataTables_paginate paging_bs_fulln" id="datatable1_paginate">
-                            <ul class="pagination">
-                                <li><a tabindex="0" class="paginate_button first" id="datatable1_first"
-                                       href="/ExamineeInfoManage?PageNo=1">首页</a>
-                                </li>
-
-                                <#if PageDataList.pageNum lte 1>
-                                    <li class="disabled"><a class="paginate_button previous" herf="#">上一页</a></li>
-                                <#else>
-                                    <li>
-                                        <a tabindex="0" class="paginate_button previous" id="datatable1_previous"
-                                           onclick="query(${PageDataList.pageNum}-1)">上一页</a></li>
-                                </#if>
-
-                                <#if PageDataList.pages gte 1>
-                                <#--如果当前页往前查3页不是第2页-->
-                                    <#if ((PageDataList.pageNum - 3) > 2)>
-                                        <li><span class="text">…</span></li>
-                                    </#if>
-                                <#--当前页的前3页和后3页-->
-                                    <#list (PageDataList.pageNum  - 3)..(PageDataList.pageNum  + 3) as pageNum>
-                                    <#--如果位于第一页和最后一页之间-->
-                                        <#if PageDataList.pageNum == pageNum>
-                                            <li class="active"><a tabindex="0" href="#"
-                                                                  onclick="query(${pageNum})">${pageNum}</a>
-
-                                            </li>
-                                        <#elseif (pageNum >= 1) && (pageNum <= PageDataList.pages)>
+                </#list>
+                <#if  ThePageInfo??>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-left">
+                                <div class="dataTables_info"  style="margin-top: 28px">
+                                    每页显示
+                                    <input type="hidden" id="pageSizeInput" value="" name="pageSize">
+                                    <select name="pageSize">
+                                        <option id="pageSizeData" >3</option>
+                                        <option id="pageSizeData" >10</option>
+                                        <option id="pageSizeData" >20</option>
+                                    </select>条数据
+                                    共${(ThePageInfo.pages)!""}页第${(ThePageInfo.pageNum)!""}页
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <#-- ThePageInfo==> pageNum – 页码 pageSize – 每页显示数量-->
+                                <ul>
+                                    <ul>
+                                        <li><a  href="/Index?pageNo=1" >首页</a>
+                                        </li>
+                                        <#if ThePageInfo.pageNum lte 1>
+                                            <li ><a herf = "#">上一页</a></li>
+                                        <#else>
                                             <li>
-                                                <a tabindex="0" onclick="query(${pageNum})">${pageNum}</a>
-                                            </li>
+                                                <a onclick="query(${ThePageInfo.pageNum}-1)">上一页</a></li>
                                         </#if>
-                                    </#list>
-                                <#--如果当前页往后查3页不是倒数第2页-->
-                                    <#if (PageDataList.pageNum + 3) < (PageDataList.pages - 1)>
-                                        <li><span class="text">…</span></li>
-                                    </#if>
-                                </#if>
+                                        <#if ThePageInfo.pages gte 1>
+                                            <#if ((ThePageInfo.pageNum - 3) > 2)>
+                                                <li><span class="text">…</span></li>
+                                            </#if>
+                                            <#list (ThePageInfo.pageNum  - 3)..(ThePageInfo.pageNum  + 3) as pageNum>
+                                                <#if ThePageInfo.pageNum == pageNum>
+                                                    <li class="active"><a tabindex="0" href="#" onclick="query(${pageNum})" >${pageNum}</a>
 
-
-                                <#if PageDataList.pageNum gte PageDataList.pages>
-                                    <li class="disabled"><a class="paginate_button next" herf="#">下一页</a></li>
-                                <#else>
-                                    <li>
-                                        <a tabindex="0" class="paginate_button next" id="datatable1_next"
-                                           onclick="query(${PageDataList.pageNum}+1)">下一页</a></li>
-                                </#if>
-                                <li><a tabindex="0" class="paginate_button last" id="datatable1_last"
-                                       href="/ExamineeInfoManage?PageNo=${PageDataList.pages}">尾页</a></li>
-                            </ul>
-                        </ul>
-
+                                                    </li>
+                                                <#elseif (pageNum >= 1) && (pageNum <= ThePageInfo.pages)>
+                                                    <li>
+                                                        <a tabindex="0" onclick="query(${pageNum})">${pageNum}</a>
+                                                    </li>
+                                                </#if>
+                                            </#list>
+                                            <#if (ThePageInfo.pageNum + 3) < (ThePageInfo.pages - 1)>
+                                                <li><span>…</span></li>
+                                            </#if>
+                                        </#if>
+                                        <#if ThePageInfo.pageNum gte ThePageInfo.pages>
+                                            <li ><a herf = "#">下一页</a></li>
+                                        <#else>
+                                            <li>
+                                                <a onclick="query(${ThePageInfo.pageNum}+1)">下一页</a></li>
+                                        </#if>
+                                        <li><a href="/Index?pageNo=${ThePageInfo.pages}">尾页</a></li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </#if>
-    </div>
-</div>
-
+                </#if>
+            </#if>
+<#--           start-->
+<#--            end-->
+        </div>
+        </section>
 <#--        -->
-</div>
+    </div>
 </div>
 </div>
 

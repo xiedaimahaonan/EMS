@@ -36,22 +36,35 @@
                 and e.EXPERT_NAME like '%'|| #{expert.EXPERT_NAME}||'%'
             </if>
             <if test="expert.EXPERT_WORK_PLACE!=null and expert.EXPERT_WORK_PLACE!='' ">
-                and e.EXPERT_WORK_PLACE= #{expert.EXPERT_WORK_PLACE}
+                and e.EXPERT_WORK_PLACE like '%'|| #{expert.EXPERT_WORK_PLACE} ||'%'
             </if>
             <if test=" expert.EXPERT_TITLE!=null and  expert.EXPERT_TITLE!='' ">
-                and e.EXPERT_TITLE=#{expert.EXPERT_TITLE}
+                and e.EXPERT_TITLE like '%'|| #{expert.EXPERT_TITLE} ||'%'
             </if>
             <if test=" expert.S_NAME!=null and  expert.S_NAME!='' ">
-                and e.S_NAME =#{expert.S_NAME}
+                and s.S_NAME like '%'|| #{expert.S_NAME} ||'%'
             </if>
             <if test=" expert.E_ID !=null and  expert.E_ID !='' ">
-                and e.E_ID =#{id}
+                and e.E_ID =#{expert.E_ID}
             </if>
             <if test=" expert.S_CODE!=null and  expert.S_CODE !='' ">
-                and s.S_CODE=#{id}
+                and s.S_CODE=#{expert.S_CODE}
             </if>
         </where>
+--         ORDER BY e.E_ID
 
+    </select>
+    <select id="subjectQuery" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT e.*, s.S_CODE, s.S_NAME, s.S_COMMENT, S_ID
+        FROM EXPERTINFO e
+        JOIN TEM_ES t ON
+        e.E_ID = t.EXPERT_ID
+        LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        WHERE s.S_CODE IN (
+        <foreach collection="code" item="code" separator=",">
+            #{code}
+        </foreach>)
+        ORDER BY e.E_ID
     </select>
 
 </mapper>

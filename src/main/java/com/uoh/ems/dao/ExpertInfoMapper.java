@@ -59,5 +59,8 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
      * @return: 2022-10-3
      * @date:
      */
-    List<ExpertInfo> getExpertPageData(@Param("expert") ExpertInfo expert,@Param("id")Integer id);
+    List<ExpertInfo> getExpertPageData(@Param("expert") ExpertInfo expert);
+
+
+    List<ExpertInfo> subjectQuery(@Param("code")List<Integer> s_id);
 }

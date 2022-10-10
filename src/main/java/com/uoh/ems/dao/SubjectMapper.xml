@@ -11,6 +11,6 @@
     <select id="getSpecialArea" resultType="com.uoh.ems.bean.Subject">
         SELECT S_NAME, S_CODE ,S_COMMENT
         FROM SUBJECT
-        WHERE S_CODE > 10
+        WHERE S_CODE > 2210
     </select>
 </mapper>

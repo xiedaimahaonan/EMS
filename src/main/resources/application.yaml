@@ -3,6 +3,8 @@ server:
   port: 8088
 #数据源连接信息 oracle参数
 spring:
+  main:
+    allow-circular-references: true
   jpa:
     database: oracle
   datasource:
@@ -12,6 +14,9 @@ spring:
     password: uoh3694898
 #spring-boot整合freemarker 参数
   freemarker:
+    #文件值为空允许
+    settings:
+         classic_compatible: true
     cache: false
     charset: UTF-8
     allow-request-override: false
@@ -20,9 +25,6 @@ spring:
     check-template-location: true
     suffix: .html
     template-loader-path: classpath:/templates/
-#MVC资源放行
-#  mvc:
-#    static-path-pattern: /static/**
 #Mybatis-plus 日志 记录输出的Sql语句
 mybatis-plus:
   configuration:
