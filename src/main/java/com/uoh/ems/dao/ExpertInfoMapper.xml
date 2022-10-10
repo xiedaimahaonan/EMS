@@ -9,10 +9,11 @@
         FROM EXPERTINFO
     </select>
     <select id="getVisitPersons" resultType="com.uoh.ems.bean.ExpertInfo">
-        SELECT DISTINCT(EXPERT_NAME), e.E_ID
+        SELECT DISTINCT(EXPERT_NAME), e.E_ID,c.CG_DM,c.CG_MS
         FROM EXPERTINFO e
                  JOIN TEM_ES t ON e.E_ID = t.EXPERT_ID
                  LEFT JOIN SUBJECT S on S.S_ID = T.SUBJECT_ID
+                 LEFT JOIN CODE_GENDER c ON c.CG_DM=e.EXPERT_SEX
         where S_CODE = 2210
     </select>
     <select id="getExpertWorkPlace" resultType="com.uoh.ems.bean.ExpertInfo">
@@ -29,8 +30,10 @@
         FROM EXPERTINFO
     </select>
     <select id="getExpertPageData" resultType="com.uoh.ems.bean.ExpertInfo">
-        SELECT e.*,s.S_CODE,s.S_NAME,s.S_COMMENT FROM EXPERTINFO e JOIN TEM_ES t ON
-        e.E_ID = t.EXPERT_ID LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        SELECT e.*,s.S_CODE,s.S_NAME,s.S_COMMENT,S_ID ,c.CG_DM ,c.CG_MS FROM EXPERTINFO e
+        JOIN  TEM_ES  t ON e.E_ID = t.EXPERT_ID
+        LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        LEFT JOIN CODE_GENDER c ON c.CG_DM=e.EXPERT_SEX
         <where>
             <if test="expert.EXPERT_NAME!=null and expert.EXPERT_NAME!='' ">
                 and e.EXPERT_NAME like '%'|| #{expert.EXPERT_NAME}||'%'
@@ -51,15 +54,16 @@
                 and s.S_CODE=#{expert.S_CODE}
             </if>
         </where>
---         ORDER BY e.E_ID
-
+         ORDER BY e.E_ID
     </select>
     <select id="subjectQuery" resultType="com.uoh.ems.bean.ExpertInfo">
-        SELECT e.*, s.S_CODE, s.S_NAME, s.S_COMMENT, S_ID
+        SELECT e.*, s.S_CODE, s.S_NAME, s.S_COMMENT, S_ID,
+        c.CG_DM,c.CG_MS
         FROM EXPERTINFO e
         JOIN TEM_ES t ON
         e.E_ID = t.EXPERT_ID
         LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        LEFT JOIN CODE_GENDER c ON c.CG_DM=e.EXPERT_SEX
         WHERE s.S_CODE IN (
         <foreach collection="code" item="code" separator=",">
             #{code}

@@ -33,5 +33,8 @@ public class ExpertInfo {
     private Integer pageNum;
     @TableField(exist=false)
     private Integer pageSize;
-
+    @TableField(exist=false)
+    private  Integer CG_DM;
+    @TableField(exist=false)
+    private char CG_MS;
 }

@@ -15,6 +15,7 @@
 
 
 <script>
+<#--    多专家科目查看-->
     $(document).ready(function () {
         $('#search-panel').hide();
         $("#advanced-search").click(function () {
@@ -29,7 +30,6 @@
             $("input[name='S_CODE']:checked").each(function (i) {
                 S_CODE[i] = $(this).val()
             })
-            console.log(S_CODE)
 
             $.ajax({
                 url: "/subjectQuery",
@@ -38,7 +38,7 @@
                 dataType: "json",
                 data: JSON.stringify(S_CODE),
                 success: function (data) {
-                    console.log(data)
+                    $('#pageData').html(data)
                 }
             });
         })
@@ -162,24 +162,35 @@
                 }
             });
         })
+        //高级搜索面板
+        $('.search-panel .search-btn').click(function () {
+            $.ajax({
+                url: "/IndexQuery",
+                type: "post",
+                data: $('#advanced_search_form').serialize(),
+                success: function (data) {
+                    $('#pageData').html(data)
+                },
+                error: function (data) {
+                },
+            });
+        });
           /*姓名*/
         $("input[id='search_name']").on('keypress',function (e) {
             var keycode=e.keyCode;
             if(keycode='13') {
-                e.preventDefault();
-                console.log($(this).val())
+                //e.preventDefault();
                 $.ajax({
                     url: "/IndexQuery",
                     type: "POST",
-                    //data: JSON.stringify($("input[id='search_name']").val()),
                     data: $("input[id='search_name']").val(),
                     success: function (data) {
-                        console.log(data)
+                        $('#pageData').html(data)
                     }
                 })
             }
         });
-// 清空输入框的值
+         // 清空输入框的值
         $('#search-panel .clear_btn').click(function () {
             $(" input[ name='EXPERT_NAME' ] ").val("");
             $(" input[ name='EXPERT_WORK_PLACE' ] ").val("");
@@ -192,6 +203,7 @@
 
 </script>
 <script>
+<#--    点击页码查询数据-->
     function query(pageNum) {
         if(pageNum == null)
         {
@@ -257,7 +269,7 @@
         <div class="divider col-lg-12" style="background-color: #e3e3e3;margin-top: 10px ;"></div>
         <div class="col-md-4  search-panel" id="search-panel">
             <div class="search-text">高级搜索</div>
-            <form action="" method="post" id="advanced_search_form">
+            <form action="#" method="post" id="advanced_search_form">
                 <table style="margin: auto;">
                     <tbody>
                     <tr>
