@@ -1,0 +1,77 @@
+<#if PageStarData??>
+  <#list PageStarData as es >
+  <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">-->
+                     <span class="col-md-6 flex1">
+                        <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
+                        <div class="right">
+                            <p> 姓名:${(es.EXPERT_NAME)!""}</p>
+                            <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
+                            <p> 联系方式:${(es.EXPERT_TEL)!""}</p>
+                            <p> 主要成果:</p>
+                            <#--<iframe src="/expertResult"style="width:105px;height:100px; border-style: none"></iframe><-->
+                        </div>
+                      </span>
+
+  </#list>
+  <#if  ThePageInfo??>
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="pull-left">
+                  <div class="dataTables_info"  style="margin-top: 28px">
+                      每页显示
+                      <input type="hidden" id="pageSizeInput" value="" name="pageSize">
+                      <select name="pageSize" id="pageSizeSelect">
+                          <option id="pageSizeData" >3</option>
+                          <option id="pageSizeData" >10</option>
+                          <option id="pageSizeData" >20</option>
+                      </select>条数据
+                      共${(ThePageInfo.pages)!""}页第${(ThePageInfo.pageNum)!""}页
+                  </div>
+              </div>
+              <div class="pull-right">
+                  <#-- ThePageInfo==> pageNum – 页码 pageSize – 每页显示数量-->
+                  <ul>
+                      <ul>
+                          <li><a  href="/Index?pageNo=1" >首页</a>
+                          </li>
+                          <#if ThePageInfo.pageNum lte 1>
+                              <li ><a herf = "#">上一页</a></li>
+                          <#else>
+                              <li>
+                                  <a onclick="query(${ThePageInfo.pageNum}-1)">上一页</a></li>
+                          </#if>
+                          <#if ThePageInfo.pages gte 1>
+                              <#if ((ThePageInfo.pageNum - 3) > 2)>
+                                  <li><span class="text">…</span></li>
+                              </#if>
+                              <#list (ThePageInfo.pageNum  - 3)..(ThePageInfo.pageNum  + 3) as pageNum>
+                                  <#if ThePageInfo.pageNum == pageNum>
+                                      <li class="active"><a tabindex="0" href="#" onclick="query(${pageNum})" >${pageNum}</a>
+
+                                      </li>
+                                  <#elseif (pageNum >= 1) && (pageNum <= ThePageInfo.pages)>
+                                      <li>
+                                          <a tabindex="0" onclick="query(${pageNum})">${pageNum}</a>
+                                      </li>
+                                  </#if>
+                              </#list>
+                              <#if (ThePageInfo.pageNum + 3) < (ThePageInfo.pages - 1)>
+                                  <li><span>…</span></li>
+                              </#if>
+                          </#if>
+                          <#if ThePageInfo.pageNum gte ThePageInfo.pages>
+                              <li ><a herf = "#">下一页</a></li>
+                          <#else>
+                              <li>
+                                  <a onclick="query(${ThePageInfo.pageNum}+1)">下一页</a></li>
+                          </#if>
+                          <li><a href="/Index?pageNo=${ThePageInfo.pages}">尾页</a></li>
+                      </ul>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </#if>
+  <#--           start-->
+  <#--            end-->
+</#if>
