@@ -128,8 +128,12 @@ public class ExpertInfoController {
      * @date:2022-10-8
      */
     @GetMapping("/expertResult")
-    public ModelAndView expertResult(){
+    public ModelAndView expertResult(@ModelAttribute("expertInfo") ExpertInfo expertInfo){
         ModelAndView mv = new ModelAndView("MainResult");
+        mv.addObject("indexShow", "首页");
+        mv.addObject("indexMsg", "专家导航");
+        mv.addObject("mainresult", "主要成果");
+        mv.addObject("EIDQUERY",expertInfoMapper.EIDQuery(expertInfo.getE_ID()));
         return mv;
     }
 

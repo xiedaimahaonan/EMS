@@ -70,5 +70,13 @@
         </foreach>)
         ORDER BY e.E_ID
     </select>
-
+    <select id="EIDQuery" resultType="com.uoh.ems.bean.ExpertInfo">
+        SELECT distinct (E.EXPERT_NAME), e.E_ID,e.EXPERT_WORK_PLACE,e.EXPERT_TITLE
+        FROM EXPERTINFO e
+        JOIN TEM_ES t ON
+        e.E_ID = t.EXPERT_ID
+        LEFT JOIN SUBJECT S on t.SUBJECT_ID = S.S_ID
+        LEFT JOIN CODE_GENDER c ON c.CG_DM=e.EXPERT_SEX
+        WHERE E_ID=#{E_ID}
+    </select>
 </mapper>

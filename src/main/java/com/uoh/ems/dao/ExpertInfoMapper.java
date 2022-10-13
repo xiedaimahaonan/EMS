@@ -63,4 +63,5 @@ public interface ExpertInfoMapper extends BaseMapper<ExpertInfo> {
 
 
     List<ExpertInfo> subjectQuery(@Param("code")List<Integer> s_id);
+    List<ExpertInfo> EIDQuery(Integer E_ID);
 }

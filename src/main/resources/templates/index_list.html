@@ -1,7 +1,8 @@
 <#if PageStarData??>
   <#list PageStarData as es >
   <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">-->
-                     <span class="col-md-6 flex1">
+                    <a href="/expertResult?E_ID=${(es.e_ID)!""}">
+                        <span class="col-md-6 flex1">
                         <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
                         <div class="right">
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
@@ -11,6 +12,7 @@
                             <#--<iframe src="/expertResult"style="width:105px;height:100px; border-style: none"></iframe><-->
                         </div>
                       </span>
+                    </a>
 
   </#list>
   <#if  ThePageInfo??>
