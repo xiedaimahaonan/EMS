@@ -54,6 +54,7 @@ public class ExpertInfoController {
         return mv;
     }
 
+
     /**
      * @parameter: ExpertInfo
      * @author: XDS
@@ -65,7 +66,7 @@ public class ExpertInfoController {
     @PostMapping("/IndexQuery")
     public ModelAndView queryMessage(@ModelAttribute("expertInfo") ExpertInfo expertInfo){
         expertInfo.setMarker(2);
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("index_list");
         mv = getPageData(expertInfo,mv);
         return mv;
     }
@@ -92,7 +93,7 @@ public class ExpertInfoController {
      */
     @PostMapping("/subjectQuery")
     public ModelAndView subjectQuery(@RequestBody List<String> id){
-        ModelAndView mv  = new ModelAndView("index");
+        ModelAndView mv  = new ModelAndView("index_list");
         ExpertInfo e = new ExpertInfo();
         List<Integer> list = new ArrayList<>();
         for (String s : id) {
@@ -124,6 +125,7 @@ public class ExpertInfoController {
         ModelAndView mv = new ModelAndView("MainResult");
         return mv;
     }
+
 
     /**
      * @parameter: ExpertInfo ModelAndView
