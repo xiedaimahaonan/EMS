@@ -357,7 +357,7 @@
                             <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
                                 <#list VisitPersonsMsg as v>
                                     <li class="nav-item col-md-offset-6 ">
-                                        <a href="/IndexLeftQuery/${(v.e_ID)!""}"
+                                        <a href="/IndexLeftQuery_${(v.e_ID)!""}"
                                            style="color: black;">${(v.EXPERT_NAME)!""}</a>
                                     </li>
                                 </#list>
@@ -381,7 +381,7 @@
                         <div class="collapse show" id="zhicheng">
                             <ul class="nav flex-column sub-menu " id="nav-li-item-zhicheng">
                                 <#list ExpertTitleMsg as t>
-                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(t.e_ID)!""}"
+                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery_${(t.e_ID)!""}"
                                                                              style="color: black;">${(t.EXPERT_TITLE)}</a>
                                     </li>
                                 </#list>
@@ -411,7 +411,7 @@
                                                     style="color: black;">${(sp.s_COMMENT)!""}</a></li>
                                     <#else>
                                         <li class="nav-item col-md-offset-6 " name="profession"><a
-                                                    href="/IndexLeftQuery/${(sp.s_CODE)!""}"
+                                                    href="/IndexLeftQuery_${(sp.s_CODE)!""}"
                                                     style="color: black;">${(sp.s_NAME)!""}</a>
                                         </li>
                                     </#if>
@@ -436,7 +436,7 @@
                         <div class="collapse show" id="jigou">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-jigou">
                                 <#list ExpertWorkPlace as w>
-                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery/${(w.e_ID)!""}"
+                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery_${(w.e_ID)!""}"
                                                                              style="color: black;">${(w.EXPERT_WORK_PLACE)!""}</a>
                                     </li>
                                 </#list>

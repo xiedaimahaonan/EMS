@@ -70,9 +70,16 @@ public class ExpertInfoController {
         mv = getPageData(expertInfo,mv);
         return mv;
     }
-    @GetMapping("/IndexLeftQuery/{id}")
+    @GetMapping("/IndexLeftQuery_{id}")
     public ModelAndView queryLeftMessage(@PathVariable Integer id){
         ModelAndView mv = new ModelAndView("index");
+        mv.addObject("indexShow", "首页");
+        mv.addObject("indexMsg", "专家导航");
+        mv.addObject("SpecialAreaMsg",subjectMapper.getSpecialArea());
+        mv.addObject("SubjectMsg",subjectMapper.getSubjectMsg());
+        mv.addObject("ExpertTitleMsg",expertInfoMapper.getExpertTitle());
+        mv.addObject("VisitPersonsMsg",expertInfoMapper.getVisitPersons());
+        mv.addObject("ExpertWorkPlace",expertInfoMapper.getExpertWorkPlace());
         ExpertInfo e = new ExpertInfo();
         e.setMarker(2);
         if(String.valueOf(id).length()==4){
