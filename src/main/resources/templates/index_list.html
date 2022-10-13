@@ -15,18 +15,9 @@
   </#list>
   <#if  ThePageInfo??>
       <div class="row">
-          <div class="col-lg-12">
-              <div class="pull-left">
-                  <div class="dataTables_info"  style="margin-top: 15px">
-                      每页显示
-                      <input type="hidden" id="pageSizeInput" value="" name="pageSize">
-                      <select name="pageSize" id="pageSizeSelect">
-                          <option id="pageSizeData" >3</option>
-                          <option id="pageSizeData" >10</option>
-                          <option id="pageSizeData" >20</option>
-                      </select>条数据
+          <div class="col-lg-9 pull-right">
+              <div class="pull-left" style="margin-top: 20px">
                       共${(ThePageInfo.pages)!""}页第${(ThePageInfo.pageNum)!""}页
-                  </div>
               </div>
               <div class="rq pull-right">
                   <#-- ThePageInfo==> pageNum – 页码 pageSize – 每页显示数量-->

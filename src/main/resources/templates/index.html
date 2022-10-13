@@ -16,7 +16,7 @@
 
 
 <script>
-<#--    多专家科目查看-->
+// <#--    多专家科目查看-->
     $(document).ready(function () {
         $('#search-panel').hide();
         $("#advanced-search").click(function () {
@@ -452,19 +452,21 @@
             </nav>
         </div>
         <div class="col-md-8">
-            <section id="bottomLine" class="col-lg-10">
+            <section id="bottomLine" class="col-lg-10" >
 
-                <div id="pageData">
-
-
-
+                <div id="pageData" >
                     <#include 'index_list.html'>
-
-
-
-
                 </div>
-
+                
+                <div class="col-lg-3"style="margin-top: -55px" >
+                每页显示
+                <input type="hidden" id="pageSizeInput" value="" name="pageSize">
+                <select name="pageSize" id="pageSizeSelect">
+                    <option id="pageSizeData" >3</option>
+                    <option id="pageSizeData" >10</option>
+                    <option id="pageSizeData" >20</option>
+                </select>条数据
+                </div>
             </section>
             <#--        -->
         </div>
