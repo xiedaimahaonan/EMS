@@ -64,7 +64,7 @@
                 sumHeight2 = sumHeight2 + $(n).height();
                 if (sumHeight2 == 180) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if (txt == "查看更多>>") {
+                        if (txt == '查看更多>>') {
                             $('#show_more-jigou').text('收起')
                         } else if (txt == '收起') {
                             $('#show_more-jigou').text('查看更多>>')
@@ -87,12 +87,12 @@
         });
         $('#show_more-guwentuan').click(function () {
             var sumHeight = 0;
-            var txt = $('#show_more-guwentuan').text().trim()
+            var txt = $('#show_more-guwentuan').text()
             $('#nav-li-item-guwentuan li').each(function (i, n) {
                 sumHeight = sumHeight + $(n).height();
                 if (sumHeight == 180) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if ($('#show_more-guwentuan').text().trim() == "查看更多>>") {
+                        if (txt == '查看更多>>') {
                             $('#show_more-guwentuan').text('收起')
                         } else if (txt == '收起') {
                             $('#show_more-guwentuan').text('查看更多>>')
@@ -109,7 +109,6 @@
     $(document).ready(function () {
         //职称查看更多
         var sumHeightzhingcheng = 0;
-        //专家领域查看更多
         $('#nav-li-item-zhicheng li').each(function (i, n) {
             sumHeightzhingcheng = sumHeightzhingcheng + $(n).height();
 
@@ -124,10 +123,10 @@
                 sumHeight1 = sumHeight1 + $(n).height();
                 if (sumHeight1 == 180) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if (txt == "查看更多>>") {
-                            $('#show_more_zhicheng').text("收起");
-                        } else if (txt == "收起") {
-                            $('#show_more_zhicheng').text("查看更多>>");
+                        if (txt == '查看更多>>') {
+                            $('#show_more_zhicheng').text('收起');
+                        } else if (txt == '收起') {
+                            $('#show_more_zhicheng').text('查看更多>>');
                         }
                     });
                 }
@@ -150,12 +149,12 @@
         });
         $('#show_more-zhuanjialingyu').click(function () {
             var sumHeight = 0;
-            var txt = $('#show_more-zhuanjialingyu').text().trim()
+            var txt = $('#show_more-zhuanjialingyu').text()
             $('#nav-li-item-zhuanjialingyu li').each(function (i, n) {
                 sumHeight = sumHeight + $(n).height();
                 if (sumHeight == 212) {
                     $(this).nextAll('li').toggle(0, function () {
-                        if ($('#show_more-zhuanjialingyu').text().trim() == "查看更多>>") {
+                        if (txt == '查看更多>>') {
                             $('#show_more-zhuanjialingyu').text('收起')
                         } else if (txt == '收起') {
                             $('#show_more-zhuanjialingyu').text('查看更多>>')
