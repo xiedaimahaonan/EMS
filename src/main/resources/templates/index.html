@@ -14,157 +14,90 @@
     <title>index</title>
 </head>
 
+<script>
+    //侧边栏查看更多
+    function show_more(id1, id2) {
+        $(id1).each(function (i, n) {
+            if (i == 4) {
+                $(this).nextAll('li').hide();
+                return false
+            }
+        });
+        $(id2).on("click",function () {
+            var txt = $(id2).text()
+            $(id1).each(function (i, n) {
+                if (i == 4) {
+                    $(this).nextAll('li').toggle(0, function () {
+                        if (txt == '查看更多>>') {
+                            $(id2).text('收起')
+                        } else if (txt == '收起') {
+                            $(id2).text('查看更多>>')
+                        }
+
+                    });
+                }
+            });
+        });
+    }
+
+    // <#--  下一页查询数据-->
+    function query(pageNum) {
+        if (pageNum == null) {
+            pageNum = $("#pageNum").text();
+        }
+        var pageSize = $("option:selected").val();
+        $.ajax({
+            url: "/IndexQuery",
+            type: "POST",
+            data: $('#advanced_search_form').serialize() + "&pageNum=" + pageNum + "&pageSize=" + pageSize,
+            success: function (data) {
+                //数据回显
+                $('#pageData').html(data)
+            }
+        });
+    }
+
+    jQuery(function (){
+    //侧边栏查看更多
+        show_more("#nav-li-item-jigou li","#show_more-jigou");
+        show_more("#nav-li-item-guwentuan li","#show_more-guwentuan");
+        show_more("#nav-li-item-zhicheng li","#show_more_zhicheng");
+        show_more("#nav-li-item-zhuanjialingyu li","#show_more-zhuanjialingyu");
+    })
+</script>
 
 <script>
-// <#--    多专家科目查看-->
-    $(document).ready(function () {
+   jQuery(function () {
+        //高级搜索面板隐藏
         $('#search-panel').hide();
-        $("#advanced-search").click(function () {
+        $("#advanced-search").on("click",function () {
             $('#search-panel').toggle();
         });
 
-        $('#clear_subject').click(function () {
+        //清空学科分类
+        $('#clear_subject').on("click",function () {
             $("input[name='S_CODE']:checked").prop('checked', false);
         })
-        $('input[name="S_CODE"]').click(function () {
+
+        //点击学科分类发请求
+        $('input[name="S_CODE"]').on("click",function () {
             var S_CODE = [];
             $("input[name='S_CODE']:checked").each(function (i) {
                 S_CODE[i] = $(this).val()
             })
-
             $.ajax({
                 url: "/subjectQuery",
                 type: "post",
                 contentType: 'application/json; charset=UTF-8',
-
                 data: JSON.stringify(S_CODE),
                 success: function (data) {
-
                     $('#pageData').html(data)
                 }
             });
         })
-    });
-</script>
 
-<script>
-    $(document).ready(function () {
-        //机构查看更多
-        var sumHeight_jigou = 0;
-        $('#nav-li-item-jigou li').each(function (i, n) {
-            sumHeight_jigou = sumHeight_jigou + $(n).height();
-            if (sumHeight_jigou == 180) {
-                $(this).nextAll('li').hide();
-            }
-        });
-        $('#show_more-jigou').click(function () {
-            var sumHeight2 = 0;
-            var txt = $('#show_more-jigou').text()
-            $('#nav-li-item-jigou li').each(function (i, n) {
-                sumHeight2 = sumHeight2 + $(n).height();
-                if (sumHeight2 == 180) {
-                    $(this).nextAll('li').toggle(0, function () {
-                        if (txt == '查看更多>>') {
-                            $('#show_more-jigou').text('收起')
-                        } else if (txt == '收起') {
-                            $('#show_more-jigou').text('查看更多>>')
-                        }
-                    });
-                }
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        //顾问团查看更多
-        var sumHeight_guwentuan = 0;
-        $('#nav-li-item-guwentuan li').each(function (i, n) {
-            sumHeight_guwentuan = sumHeight_guwentuan + $(n).height();
-            if (sumHeight_guwentuan == 180) {
-                $(this).nextAll('li').hide();
-            }
-        });
-        $('#show_more-guwentuan').click(function () {
-            var sumHeight = 0;
-            var txt = $('#show_more-guwentuan').text()
-            $('#nav-li-item-guwentuan li').each(function (i, n) {
-                sumHeight = sumHeight + $(n).height();
-                if (sumHeight == 180) {
-                    $(this).nextAll('li').toggle(0, function () {
-                        if (txt == '查看更多>>') {
-                            $('#show_more-guwentuan').text('收起')
-                        } else if (txt == '收起') {
-                            $('#show_more-guwentuan').text('查看更多>>')
-                        }
-                    });
-                }
-            });
-        });
-    });
-
-</script>
-
-<script>
-    $(document).ready(function () {
-        //职称查看更多
-        var sumHeightzhingcheng = 0;
-        $('#nav-li-item-zhicheng li').each(function (i, n) {
-            sumHeightzhingcheng = sumHeightzhingcheng + $(n).height();
-
-            if (sumHeightzhingcheng == 180) {
-                $(this).nextAll('li').hide();
-            }
-        });
-        $('#show_more_zhicheng').click(function () {
-            var sumHeight1 = 0;
-            var txt = $('#show_more_zhicheng').text()
-            $('#nav-li-item-zhicheng li').each(function (i, n) {
-                sumHeight1 = sumHeight1 + $(n).height();
-                if (sumHeight1 == 180) {
-                    $(this).nextAll('li').toggle(0, function () {
-                        if (txt == '查看更多>>') {
-                            $('#show_more_zhicheng').text('收起');
-                        } else if (txt == '收起') {
-                            $('#show_more_zhicheng').text('查看更多>>');
-                        }
-                    });
-                }
-            });
-        })
-    });
-
-</script>
-
-<script>
-    $(document).ready(function () {
-        var sumHeight = 0;
-        //专家领域查看更多
-        $('#nav-li-item-zhuanjialingyu li').each(function (i, n) {
-            sumHeight = sumHeight + $(n).height();
-
-            if (sumHeight == 212) {
-                $(this).nextAll('li').hide();
-            }
-        });
-        $('#show_more-zhuanjialingyu').click(function () {
-            var sumHeight = 0;
-            var txt = $('#show_more-zhuanjialingyu').text()
-            $('#nav-li-item-zhuanjialingyu li').each(function (i, n) {
-                sumHeight = sumHeight + $(n).height();
-                if (sumHeight == 212) {
-                    $(this).nextAll('li').toggle(0, function () {
-                        if (txt == '查看更多>>') {
-                            $('#show_more-zhuanjialingyu').text('收起')
-                        } else if (txt == '收起') {
-                            $('#show_more-zhuanjialingyu').text('查看更多>>')
-                        }
-                    });
-                }
-            });
-        })
-        //高级搜索面板
-        $('.search-panel .search-btn').click(function () {
+        //高级搜索面板请求
+        $('.search-panel .search-btn').on("click",function () {
             $.ajax({
                 url: "/IndexQuery",
                 type: "post",
@@ -176,17 +109,17 @@
                 },
             });
         });
-          /*姓名*/
-        $("input[id='search_name']").on('keypress',function (e) {
-            var keycode=e.keyCode;
-            var pageSize=$("option:selected").val()
-            if(keycode='13') {
-                //e.preventDefault();
+
+        /*姓名搜索请求，enter发起请求*/
+        $("input[id='search_name']").on('keypress', function (e) {
+            var keycode = e.keyCode;
+            var pageSize = $("option:selected").val()
+            if (keycode = '13') {
                 // console.log($("input[id='search_name']").val())
                 $.ajax({
                     url: "/IndexQuery",
                     type: "POST",
-                    data: "EXPERT_NAME="+$("#search_name").val()+"&pageSize="+pageSize,
+                    data: "EXPERT_NAME=" + $("#search_name").val() + "&pageSize=" + pageSize,
                     success: function (data) {
                         $('#pageData').html(data)
                     }
@@ -194,19 +127,21 @@
             }
         });
 
-        $('#pageSizeSelect').on("change",function(){
-            var pageSize=$("option:selected").val()
-           $.ajax({
-               url:"/IndexQuery",
-               type:"POST",
-               data:"pageSize="+pageSize,
-               success: function (data) {
-                   $('#pageData').html(data)
-               }
-           })
+        //每页显示多少条请求
+        $('#pageSizeSelect').on("change", function () {
+            var pageSize = $("option:selected").val()
+            $.ajax({
+                url: "/IndexQuery",
+                type: "POST",
+                data: "pageSize=" + pageSize,
+                success: function (data) {
+                    $('#pageData').html(data)
+                }
+            })
         })
-         //清空输入框的值
-        $('#search-panel .clear_btn').click(function () {
+
+        //清空输入框的值
+        $('#search-panel .clear_btn').on("click",function () {
             $("td input[ name='EXPERT_NAME' ] ").val("");
             $("td input[ name='EXPERT_WORK_PLACE' ] ").val("");
             $("td input[ name='S_NAME' ] ").val("");
@@ -215,38 +150,8 @@
     });
 
 
-
 </script>
-<script>
-// <#--    点击页码查询数据-->
-    function query(pageNum) {
-        if(pageNum == null)
-        {
-            pageNum =  $("#pageNum").text();
-        }
-       var pageSize=$("option:selected").val()
-        //下拉表change事件
-       /* let pageSize
-        $("#pageSizeData").change(function() {
-            pageSize = $("#pageSizeData option:selected").val()
-            console.log(pageSize)
-            console.log("========")
-            $("#pageSizeInput").val(pageSize)
-            console.log($("#pageSizeInput").val())
-        })*/
 
-        $.ajax({
-            url: "/IndexQuery",
-            type: "POST",
-            // data: $('#advanced_search_form').serialize()+"&pageNum="+pageNum,
-            data: $('#advanced_search_form').serialize()+"&pageNum="+pageNum+"&pageSize="+pageSize,
-            success: function (data) {
-                //数据回显
-                $('#pageData').html(data)
-            }
-        });
-    }
-</script>
 
 <body>
 <div class="container-fluid">
@@ -276,10 +181,10 @@
 
             </ul>
 
-                <div class="col-md-6" style=" height: 50px; position: relative;">
-                    <input type="text" class="col-md-6 search" name="EXPERT_NAME"  id="search_name" placeholder="请输入学者姓名">
-                    <span id="advanced-search" class="advanced-search">高级搜索</span>
-                </div>
+            <div class="col-md-6" style=" height: 50px; position: relative;">
+                <input type="text" class="col-md-6 search" name="EXPERT_NAME" id="search_name" placeholder="请输入学者姓名">
+                <span id="advanced-search" class="advanced-search">高级搜索</span>
+            </div>
         </div>
         <div class="divider col-lg-12" style="background-color: #e3e3e3;margin-top: 10px ;"></div>
         <div class="col-md-4  search-panel" id="search-panel">
@@ -314,7 +219,7 @@
                     </tbody>
                 </table>
                 <input type="button" value="搜索" class="search-btn">
-                <input type="button" value="清空" class="clear_btn" >
+                <input type="button" value="清空" class="clear_btn">
             </form>
         </div>
         <div class="col-md-4" style="height: auto; border-right: 1px #e3e3e3 solid;">
@@ -335,7 +240,8 @@
                                 <form method="post" id="subject">
                                     <#list SubjectMsg as su>
                                         <li class="nav-item col-md-offset-6 nav_item">
-                                            <input type="checkbox" name="S_CODE" value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
+                                            <input type="checkbox" name="S_CODE"
+                                                   value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
                                         </li>
                                     </#list>
                                 </form>
@@ -451,20 +357,20 @@
             </nav>
         </div>
         <div class="col-md-8">
-            <section id="bottomLine" class="col-lg-10" >
+            <section id="bottomLine" class="col-lg-10">
 
-                <div id="pageData" >
+                <div id="pageData">
                     <#include 'index_list.html'>
                 </div>
-                
-                <div class="col-lg-3"style="margin-top: -55px" >
-                每页显示
-                <input type="hidden" id="pageSizeInput" value="" name="pageSize">
-                <select name="pageSize" id="pageSizeSelect">
-                    <option id="pageSizeData" >3</option>
-                    <option id="pageSizeData" >10</option>
-                    <option id="pageSizeData" >20</option>
-                </select>条数据
+
+                <div class="col-lg-3" style="margin-top: -55px">
+                    每页显示
+                    <input type="hidden" id="pageSizeInput" value="" name="pageSize">
+                    <select name="pageSize" id="pageSizeSelect">
+                        <option id="pageSizeData">3</option>
+                        <option id="pageSizeData">10</option>
+                        <option id="pageSizeData">20</option>
+                    </select>条数据
                 </div>
             </section>
             <#--        -->
