@@ -1,10 +1,10 @@
 <#if PageStarData??>
   <#list PageStarData as es >
-  <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; height:245px">-->
+  <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; width:400px;  height:245px;">-->
                     <a href="/expertResult?E_ID=${(es.e_ID)!""}">
                         <span class="col-md-6 flex1">
                         <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
-                        <div class="right">
+                        <div class="right" style="padding-left: 20px; color:#080808;">
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
                             <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
                             <p> 联系方式:${(es.EXPERT_TEL)!""}</p>

@@ -251,14 +251,14 @@
 
 <body>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style=" position:absolute; width: 100%; height: 100% ">
         <div class="col-lg-12 " style="height:40px ;">
-                    <span class=" col-md-4 col-md-offset-10 " style="line-height: 50px;">
+                    <span class=" col-md-4 col-md-offset-10 " style="line-height: 50px; margin-left: 0px;">
                         <a href="/index" class="index" style="color: #db422a;">首页</a>
                         <a href="/user" style="color: black;">登录</a>
                     </span>
         </div>
-        <div class="col-lg-12  background" style="height: 450px; position: relative;">
+        <div class="col-lg-12  background" style="height: 450px; position: relative; font-weight: bold; text-shadow:#080808 2px 3px 6px ">
             <div class="col-md-2 col-md-offset-2 icon"></div>
             <div class="col-md-5  col-md-offset-1 text">
                 红河州理论人才专家库系统
@@ -267,7 +267,7 @@
         <div class="col-lg-12" style="height: 50px; background-color: #f8f8f8 ;">
             <ul class="breadcrumb col-md-6" style="background-color: #f8f8f8;height: 50px;line-height: 35px;">
                 <li>
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-home" style="padding-left: 200px;"></i>
                     <a href="/Index">${(indexShow)!""}</a>
                 </li>
 
@@ -327,8 +327,8 @@
                         <div class="nav-link" href="#xuekefenlei" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 75px;background-color: #db422a;">
                             <span class="menu-title col-lg-offset-5"
-                                  style="height: 75px;color: #fff;font-size: 30px;font-family:'黑体';line-height: 75px;">学科分类</span>
-                            <span class="col-md-offset-2"><input type="button" id="clear_subject" value="清空"></span>
+                                  style="height: 75px;color: #fff;font-size: 25px;font-family:'黑体';line-height: 75px; border-bottom:thick solid #fff; padding-bottom:10px; font-weight: bold; text-shadow:#080808 2px 3px 6px ">学科分类</span>
+                            <span class="col-md-offset-2"><input type="button" id="clear_subject "   value="清空" style="border-radius:10px; border:solid 1px #080808;”></span>
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
                             <ul class="nav flex-column sub-menu pre-scrollable "
@@ -351,7 +351,7 @@
                         <div class="nav-link" href="#guwentuan" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
                             <span class="menu-title col-lg-offset-6"
-                                  style="height: 30px;line-height: 30px;">顾问团人员</span>
+                                  style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px ">顾问团人员</span>
                         </div>
                         <div class="collapse show" id="guwentuan">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
@@ -376,7 +376,7 @@
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <div class="nav-link" href="#zhicheng" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">职称</span>
+                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">职称</span>
                         </div>
                         <div class="collapse show" id="zhicheng">
                             <ul class="nav flex-column sub-menu " id="nav-li-item-zhicheng">
@@ -400,7 +400,7 @@
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <div class="nav-link" href="#zhuanyelingyu" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">专业领域</span>
+                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">专业领域</span>
                         </div>
                         <div class="collapse show" id="zhuanyelingyu">
                             <ul class="nav flex-column sub-menu " id="nav-li-item-zhuanjialingyu">
@@ -419,7 +419,7 @@
                                 <div class="nav-item col-md-offset-6 col-md-6"
                                      style="background-color: #e3e3e3;height: 36px;">
                                     <p id="show_more-zhuanjialingyu" class="show_more"
-                                       style="color: #db422a;text-align: center;height: 36px;line-height: 36px">查看更多&gt;&gt;</p>
+                                       style="color: #db422a;text-align: center;height: 36px;line-height: 36px ">查看更多&gt;&gt;</p>
                                 </div>
                             </ul>
                         </div>
@@ -431,7 +431,7 @@
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <div class="nav-link" href="#jigou" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px;">机构</span>
+                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">机构</span>
                         </div>
                         <div class="collapse show" id="jigou">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-jigou">
