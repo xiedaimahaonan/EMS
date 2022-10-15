@@ -1,4 +1,5 @@
 package com.uoh.ems.controller;
+import com.uoh.ems.bean.Users;
 import com.uoh.ems.dao.UsersMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,10 @@ public class UserController {
     public ModelAndView login() {
         ModelAndView mv  = new ModelAndView("login");
         return mv ;
+    }
 
+    @PostMapping("/UserUpdate")
+    public void UserUpdate(@ModelAttribute("user") Users user){
+        System.out.println(user);
     }
 }

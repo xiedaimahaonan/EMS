@@ -14,4 +14,6 @@ public class Users {
     private String username; ;//用户名
     private String password;//用户密码
     private String user_type;//用户类型
+    private String NewPassword;//新密码
+    private String renewpassword;//确定新密码
 }
