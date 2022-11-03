@@ -16,10 +16,10 @@
         height: auto;
     }
 </style>
-  <#-- <div id="main1" class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; width:400px;  height:245px;">-->
+  <#-- <div id="main1" class="col-lg-7 col-md-7 col-xs-7" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; width:400px;  height:245px;">-->
                     <a href="/expertResult?E_ID=${(es.e_ID)!""}">
-                        <span class="col-md-6 flex1" >
-                        <div style="border: 5px solid #000000;width: auto" class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
+                        <span class="col-md-4 flex1" >
+                        <div style="border: 5px solid #000000;" class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
                         <div class="right" style="padding-left: 20px; color:#080808;" >
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
                             <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
@@ -33,7 +33,7 @@
   </#list>
   <#if  ThePageInfo??>
       <div class="row">
-          <div class="col-lg-9 pull-right">
+          <div class="col-lg-9 col-xs-9 col-md-9 pull-right">
               <div class="pull-left" style="margin-top: 20px">
                       共${(ThePageInfo.pages)!""}页第${(ThePageInfo.pageNum)!""}页
               </div>
