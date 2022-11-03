@@ -3,7 +3,7 @@ package com.uoh.ems.service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.uoh.ems.bean.Users;
 import com.uoh.ems.dao.UsersMapper;
-import org.springframework.stereotype.Service;
+
 
 
 import javax.annotation.Resource;
@@ -18,14 +18,12 @@ import java.util.List;
 public class QueryUserDetailsService implements UserDetailsService {
     @Resource
     private UsersMapper userMapper;
-
     /**
      * @parameter: String username
      * @author: XDS
      * @description: 返回数据库 查询用户名密码
      * @return: UserDetails
      */
-
     /*@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper<Users>();

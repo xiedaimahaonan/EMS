@@ -12,6 +12,23 @@
     <script src="lib/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="css/reset.css" type="text/css">
     <title>index</title>
+    <style>
+        #main {
+            width: 100%;
+            height: 450px;
+            border: 1px solid #c3c3c3;
+            display: -webkit-flex; /* Safari */
+            -webkit-justify-content: space-around; /* Safari 6.1+ */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #main div {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
 </head>
 
 <script>
@@ -149,9 +166,12 @@
         });
     });
 
-
+//导航栏折叠
 </script>
 
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <body>
 <div class="container-fluid">
@@ -162,9 +182,9 @@
                         <a href="/user" style="color: black;">登录</a>
                     </span>
         </div>
-        <div class="col-lg-12  background" style="height: 450px; position: relative; font-weight: bold; text-shadow:#080808 2px 3px 6px ">
-            <div class="col-md-2 col-md-offset-2 icon"></div>
-            <div class="col-md-5  col-md-offset-1 text">
+        <div id="main" class="col-lg-12  background" style="height: 450px; position: relative; font-weight: bold; text-shadow:#080808 2px 3px 6px;">
+            <div class="col-md-2 col-md-offset-2 icon" style="margin-left: 0;"></div>
+            <div class="col-md-5  col-md-offset-1 text" style="margin-right: 100px; font-size:3vw;margin-left: 0">
                 红河州理论人才专家库系统
             </div>
         </div>
@@ -222,7 +242,7 @@
                 <input type="button" value="清空" class="clear_btn">
             </form>
         </div>
-        <div class="col-md-4" style="height: auto; border-right: 1px #e3e3e3 solid;">
+        <div class="col-md-1" style="height: auto; border-right: 1px #e3e3e3 solid;width: 30%;left: 0">
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <!-- partial:partials/_sidebar.ht2l -->
                 <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
@@ -231,7 +251,7 @@
                         <div class="nav-link" href="#xuekefenlei" aria-expanded="false" aria-controls="ui-basic"
                              style="height: 75px;background-color: #db422a;">
                             <span class="menu-title col-lg-offset-5"
-                                  style="height: 75px;color: #fff;font-size: 25px;font-family:'黑体';line-height: 75px; border-bottom:thick solid #fff; padding-bottom:10px; font-weight: bold; text-shadow:#080808 2px 3px 6px ">学科分类</span>
+                                  style="height: 75px;color: #fff;font-size: 25px;font-family:'黑体';line-height: 75px; border-bottom:thick solid #fff; padding-bottom:10px; font-weight: bold; text-shadow:#080808 2px 3px 6px; margin-left: 50px">学科分类</span>
                             <span class="col-md-offset-2"><input type="button" id="clear_subject "   value="清空" style="border-radius:10px; border:solid 1px #080808;”></span>
                         </div>
                         <div class="collapse show" id="xuekefenlei" style="background-color:#fff;height: 225px;">
@@ -239,7 +259,7 @@
                                 style="height: 225px;background-color: #f6f6f6;">
                                 <form method="post" id="subject">
                                     <#list SubjectMsg as su>
-                                        <li class="nav-item col-md-offset-6 nav_item">
+                                        <li class="nav-item col-md-offset-6 nav_item" style="margin-left: 60px">
                                             <input type="checkbox" name="S_CODE"
                                                    value="${(su.s_CODE)!""}">${(su.s_NAME)!""}
                                         </li>
@@ -253,18 +273,24 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link" href="#guwentuan" aria-expanded="false" aria-controls="ui-basic"
-                             style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6"
-                                  style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px ">顾问团人员</span>
-                        </div>
-                        <div class="collapse show" id="guwentuan">
+                        <div class="panel-group" id="accordion" >
+                            <div class="panel panel-default" >
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px; margin-left: 50px"
+                                           href="#collapseOne">顾问团人员	</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-guwentuan">
                                 <#list VisitPersonsMsg as v>
-                                    <li class="nav-item col-md-offset-6 ">
+                                    <li class="nav-item col-md-offset-6 " style="margin-left: 60px">
                                         <a href="/IndexLeftQuery_${(v.e_ID)!""}"
                                            style="color: black;">${(v.EXPERT_NAME)!""}</a>
                                     </li>
+
+
                                 </#list>
                                 <div class="nav-item col-md-offset-6 col-md-6"
                                      style="background-color: #e3e3e3;height: 36px;">
@@ -279,14 +305,19 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link" href="#zhicheng" aria-expanded="false" aria-controls="ui-basic"
-                             style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">职称</span>
-                        </div>
-                        <div class="collapse show" id="zhicheng">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px; margin-left: 50px"
+                                           href="#collapseTwo">职称</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse in">
+                                    <div class="panel-body">
                             <ul class="nav flex-column sub-menu " id="nav-li-item-zhicheng">
                                 <#list ExpertTitleMsg as t>
-                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery_${(t.e_ID)!""}"
+                                    <li class="nav-item col-md-offset-6 " style="margin-left: 60px"><a href="/IndexLeftQuery_${(t.e_ID)!""}"
                                                                              style="color: black;">${(t.EXPERT_TITLE)}</a>
                                     </li>
                                 </#list>
@@ -303,19 +334,24 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link" href="#zhuanyelingyu" aria-expanded="false" aria-controls="ui-basic"
-                             style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">专业领域</span>
-                        </div>
-                        <div class="collapse show" id="zhuanyelingyu">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px; margin-left: 50px"
+                                           href="#collapseThree">专业领域</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse in">
+                                    <div class="panel-body">
                             <ul class="nav flex-column sub-menu " id="nav-li-item-zhuanjialingyu">
                                 <#list SpecialAreaMsg as sp>
                                     <#if sp.s_COMMENT??>
-                                        <li class="nav-item col-md-offset-6 " name="profession"><a
+                                        <li class="nav-item col-md-offset-6 " name="profession" style="margin-left: 60px"><a
                                                     href="${(sp.s_CODE)!""}"
                                                     style="color: black;">${(sp.s_COMMENT)!""}</a></li>
                                     <#else>
-                                        <li class="nav-item col-md-offset-6 " name="profession"><a
+                                        <li class="nav-item col-md-offset-6 " name="profession" style="margin-left: 60px"><a
                                                     href="/IndexLeftQuery_${(sp.s_CODE)!""}"
                                                     style="color: black;">${(sp.s_NAME)!""}</a>
                                         </li>
@@ -334,14 +370,19 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding-top: 10px;">
                 <ul class="nav " style="border-bottom: 1px #e3e3e3 solid;">
                     <li class="nav-item" style="margin-bottom: 10px;">
-                        <div class="nav-link" href="#jigou" aria-expanded="false" aria-controls="ui-basic"
-                             style="height: 30px;">
-                            <span class="menu-title col-lg-offset-6" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px">机构</span>
-                        </div>
-                        <div class="collapse show" id="jigou">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" style="height: 30px;line-height: 30px; border-bottom:thick solid #FA8072; font-weight: bold; text-shadow:#FA8072 6px 6px 6px; margin-left: 50px"
+                                           href="#collapseFour">机构</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse in">
+                                    <div class="panel-body">
                             <ul class="nav flex-column sub-menu" id="nav-li-item-jigou">
                                 <#list ExpertWorkPlace as w>
-                                    <li class="nav-item col-md-offset-6 "><a href="/IndexLeftQuery_${(w.e_ID)!""}"
+                                    <li class="nav-item col-md-offset-6 " style="margin-left: 60px"><a href="/IndexLeftQuery_${(w.e_ID)!""}"
                                                                              style="color: black;">${(w.EXPERT_WORK_PLACE)!""}</a>
                                     </li>
                                 </#list>
@@ -356,8 +397,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-md-8">
-            <section id="bottomLine" class="col-lg-10">
+        <div class="col-md-8" style='width:70%; padding-left: 50px'>
+            <section id="bottomLine" class="col-lg-10" style="width: auto">
 
                 <div id="pageData">
                     <#include 'index_list.html'>
@@ -375,14 +416,6 @@
             </section>
             <#--        -->
         </div>
-
-    </div>
-</div>
-</div>
-
-</div>
-
-</div>
 <div class="col-lg-12" style="background-color: #2a3a47;height: 50px;font-size:8px;margin-top: 3px">
     <p style="text-align: center;color: white;padding-top: 8px">
         <a style="color: white" href="#">关于xx</a>
@@ -398,9 +431,6 @@
         <a style="color: white" href="#">常见问题</a>
         &nbsp;|&nbsp;
         <a style="color: white" href="#">网站地图</a>
-    </p>
-    <br>
-    <p style="text-align: center;color: white">
         <a style="color: white" href="#">Copyright©</a>
         &nbsp;
         2013-现在
@@ -411,6 +441,16 @@
         &nbsp;
         <a style="color: white" href="#">ICP证书:沪B2-20180057</a>
     </p>
+
+    <br>
+
+</div>
+    </div>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </body>

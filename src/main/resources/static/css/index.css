@@ -14,7 +14,7 @@
 .icon {
     background-image: url(../img/user/3.png);
     background-repeat: no-repeat;
-    background-size: 180px;
+    background-size: 3vm;
     height: 100%;
     background-position: center, center;
     /* position: absolute;

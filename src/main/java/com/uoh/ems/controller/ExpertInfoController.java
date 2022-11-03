@@ -8,6 +8,7 @@ import com.uoh.ems.bean.util.PageInfoUtil;
 import com.uoh.ems.dao.ExpertInfoMapper;
 import com.uoh.ems.dao.SubjectMapper;
 import com.uoh.ems.service.ExpertInfoService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +42,7 @@ public class ExpertInfoController {
             e.setPageNum(e.getPageNum());
         }
         if(e.getPageSize()!=null){
-            e.setPageSize(e.getPageNum());
+            e.setPageSize(e.getPageSize());
         }
         mv=this.getPageData(e,mv);
         mv.addObject("indexShow", "首页");
@@ -64,6 +65,7 @@ public class ExpertInfoController {
      */
     //http://localhost:8088/IndexQuery
     @PostMapping("/IndexQuery")
+    //@PreAuthorize("hasAnyAuthority('admin')")
     public ModelAndView queryMessage(@ModelAttribute("expertInfo") ExpertInfo expertInfo){
         expertInfo.setMarker(2);
         ModelAndView mv = new ModelAndView("index_list");
@@ -71,6 +73,7 @@ public class ExpertInfoController {
         return mv;
     }
     @GetMapping("/IndexLeftQuery_{id}")
+    //@PreAuthorize("hasAnyAuthority('admin')")
     public ModelAndView queryLeftMessage(@PathVariable Integer id){
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("indexShow", "首页");
@@ -99,6 +102,7 @@ public class ExpertInfoController {
      * @date:2022-10-7
      */
     @PostMapping("/subjectQuery")
+   // @PreAuthorize("hasAnyAuthority('admin')")
     public ModelAndView subjectQuery(@RequestBody List<String> id){
         ModelAndView mv  = new ModelAndView("index_list");
         ExpertInfo e = new ExpertInfo();
@@ -128,6 +132,7 @@ public class ExpertInfoController {
      * @date:2022-10-8
      */
     @GetMapping("/expertResult")
+    //@PreAuthorize("hasAnyAuthority('admin')")
     public ModelAndView expertResult(@ModelAttribute("expertInfo") ExpertInfo expertInfo){
         ModelAndView mv = new ModelAndView("MainResult");
         mv.addObject("indexShow", "首页");

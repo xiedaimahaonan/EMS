@@ -6,55 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="../static/css/login_css.css">
-    <link rel="stylesheet" type="text/css" href="../static/lib/bootstrap.min.css">
-    <script type="text/javascript" src="../static/lib/jquery-3.3.1.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            //修改密码
-            $('.card').hide();
-            $('.msg a').on("click",function(){
-                $('.card').show();
-            });
-
-            $('.false').on("click",function(){
-                $('.card').hide();
-            });
-
-            $('input[class="btn btn-light"]').on("click",function(){
-                $('.card').hide();
-            });
-
-            $('input[class="btn btn-primary"]').on("click",function(){
-                alert(JSON.stringify($('#UserUpdate').serialize()));
-                $.ajax({
-                    type: "post",
-                    url: "/UserUpdate",
-                    data:JSON.stringify($('#UserUpdate').serialize()),
-                    contentType: 'application/json; charset=UTF-8',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
-            });
-        })
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="css/login_css.css">
+    <script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         function login() {
             let user = {
                 "username": $("#username").val(),
                 "password": $("#password").val()
             }
-            console.log(user)
-            console.log("====")
             console.log(JSON.stringify(user))
             $.ajax({
                 url: "/login",
                 type: "post",
+                async:false,
                 contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
-                data:JSON.stringify(user),
+                data: JSON.stringify(user),
                 success: function (data) {
                     //http://localhost:8088/user
                     console.log(data)
@@ -63,26 +31,18 @@
                         $(location).attr('href', "Index")
                         console.log(data.data)
                     } else {
-                        $('.red .box-login-error').show();
-                        setTimeout(function () {
-                            $('.red .box-login-error').hide();
-                        },3000)
+
                     }
                 },
                 error: function (data) {
-                    $('.red .box-login-error').show();
-                    setTimeout(function () {
-                        $('.red .box-login-error').hide();
-                    },3000)
                 },
             });
         }
     </script>
-</head>
 
+</head>
 <body>
 <div class="containter">
-
     <div class="white">
         <div class="icon"></div>
         <div class="text">红河州理论人才专家库系统</div>
@@ -93,48 +53,22 @@
             <div class="error-user-psw">很抱歉您的用户名或密码错误，无法进入红河州理论人
                 才专家库系统，请您查证后重新输入</div>
         </div>
-        <div class="row" >
-            <div class="card" s>
-                <div class="card-body col-lg-6 col-lg-offset-3" style="background-color: #fff;z-index: 3;position:relative;border:1px solid #e3e3e3;border-radius:8px;padding: 40px;">
-                    <h4 class="card-title">重置密码</h4>
-                    <span class="false"></span>
-                    <form class="forms-sample" id="UserUpdate">
-                        <div class="form-group">
-                            <label for="updateUsername">用户名</label>
-                            <input type="text" class="form-control" name="username" id="updateUsername" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="updatePassword">旧密码</label>
-                            <input type="password" class="form-control" name="password" id="updatePassword" placeholder="OldPassword">
-                        </div>
-                        <div class="form-group">
-                            <label for="NewPassword">新密码</label>
-                            <input type="password" class="form-control" name="NewPassword" id="NewPassword" placeholder="NewPassword">
-                        </div>
-                        <div class="form-group">
-                            <label for="renewpassword">确认新密码</label>
-                            <input type="password" class="form-control" name="renewpassword" id="renewpassword" placeholder="NewPassword">
-                        </div>
-                        <input type="button" class="btn btn-primary" value="确定"></input>
-                        <input type="button" class="btn btn-light" value="取消"></input>
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="login-panel">
-            <form action="#" method="post" id="login">
-                <div class="form-group1">
+            <form action="/login" id="login" method="post">
+               <#--跨站请求伪造解决-->
+<#--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                <div class="form-group">
                     <input type="text" name="username" id="username" placeholder="请输入帐号" class="username">
                 </div>
-                <div class="form-group1">
+                <div class="form-group">
                     <input type="password" name="password" id="password" placeholder="请输入密码" class="password">
                 </div>
-                <div class="form-group1">
+                <div class="form-group">
                     <input type="button" value="登陆" class="login" onclick="login()">
                 </div>
             </form>
             <span class="msg">
-          <a href="javascript:void(0)" >修改密码</a>
+<#--          <a href="">修改密码</a>-->
         </span>
         </div>
 

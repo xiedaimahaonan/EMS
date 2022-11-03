@@ -1,21 +1,12 @@
 package com.uoh.ems.config;
 
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import javax.annotation.Resource;
 import java.io.PrintWriter;
 
-@Configuration
+/*@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
@@ -28,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @return:nulll
      * @date:2022-10-2
      */
-    @Override
+   /* @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(password());
     }
@@ -39,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @description: PasswordEncoder加密码接口对象 对比UserDetails密码
      * @return: BCryptPasswordEncoder()
      */
-    @Bean
+   /* @Bean
     PasswordEncoder password(){
         return new BCryptPasswordEncoder();
     }
@@ -51,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @return:null
      * @date:
      */
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         //没有权限访问页面
         http.exceptionHandling().accessDeniedPage("/error.html");
@@ -94,4 +85,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }*/
 
 
-}
+

@@ -1,5 +1,7 @@
 package com.uoh.ems.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uoh.ems.bean.Users;
 import com.uoh.ems.bean.util.Result;
 import com.uoh.ems.dao.UsersMapper;
@@ -13,14 +15,16 @@ import javax.annotation.Resource;
 @Slf4j
 @Controller
 public class UserController {
+    private ObjectMapper mapper = new ObjectMapper();
     @Resource
     private UsersMapper usersMapper;
-
-    @GetMapping("/Login")
+    @RequestMapping("/user")
     public ModelAndView login() {
         ModelAndView mv  = new ModelAndView("login");
         return mv ;
+
     }
+
     /**
      * @parameter: JSON
      * @author: XDS
@@ -28,9 +32,9 @@ public class UserController {
      * @return: String
      * @date: 2022-9-11
      */
-    @PostMapping("/queryLogin")
+    @PostMapping("/login")
     @ResponseBody
-    public Result<String> queryLogin(@RequestBody Users uses){
+    public Result<String> login(@RequestBody Users uses) throws JsonProcessingException {
         String username = uses.getUsername();
         log.info("用户名：{}",username);
         String password = uses.getPassword();
@@ -44,9 +48,9 @@ public class UserController {
         if (!users.getPassword().equals(password)) {
             return Result.error("登录失败");
         }
+        //mapper.writeValueAsString(Result.success("登录成功"));
         return Result.success("登录成功");
     }
-
    /* @PostMapping("/UserUpdate")
     public void UserUpdate(@ModelAttribute("user") Users user){
         System.out.println(user);

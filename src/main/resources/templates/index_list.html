@@ -1,10 +1,26 @@
 <#if PageStarData??>
   <#list PageStarData as es >
-  <#-- <div class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; width:400px;  height:245px;">-->
+<style>
+    #main1 {
+        width: 33%;
+        height: auto;
+
+        display: -webkit-flex; /* Safari */
+        -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #main1 div {
+        width: auto;
+        height: auto;
+    }
+</style>
+  <#-- <div id="main1" class="col-lg-8" style=" display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #a7a3a3; width:400px;  height:245px;">-->
                     <a href="/expertResult?E_ID=${(es.e_ID)!""}">
-                        <span class="col-md-6 flex1">
-                        <div class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
-                        <div class="right" style="padding-left: 20px; color:#080808;">
+                        <span class="col-md-6 flex1" >
+                        <div style="border: 5px solid #000000;width: auto" class="left"><img src="img/ES/${(es.e_ID)!""}.jpg"></div>
+                        <div class="right" style="padding-left: 20px; color:#080808;" >
                             <p> 姓名:${(es.EXPERT_NAME)!""}</p>
                             <p> 机构:${(es.EXPERT_WORK_PLACE)!""}</p>
                             <p> 联系方式:${(es.EXPERT_TEL)!""}</p>
